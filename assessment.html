@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real-time leadership assessment tool developed by Alvin Silva, Certified National Security Risk Management Professional (INNSSA). Validated against ISO 31000:2018 & NIST SP 800-61r3 frameworks.">
+    <title>Real-Time Leadership Assessment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Core color system - WCAG AA compliant */
+            --primary-dark: #1a3a5f;
+            --primary-medium: #2c5282;
+            --primary-light: #3b82f6;
+            --secondary-dark: #0f2943;
+            --accent-amber: #f59e0b;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --neutral-900: #1e293b;
+            --neutral-800: #334155;
+            --neutral-700: #475569;
+            --neutral-200: #e2e8f0;
+            --neutral-100: #f1f5f9;
+            --neutral-50: #f8fafc;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 12px;
+            --transition: all 0.3s ease;
+            --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.3);
+            
+            /* Reduced motion preference */
+            --transition-duration: 0.3s;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            :root {
+                --transition-duration: 0.01s;
+            }
+            * {
+                animation-duration: 0.01s !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01s !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--neutral-900);
+            background-color: var(--neutral-50);
+            background-image: linear-gradient(to bottom, var(--neutral-50) 0%, #ffffff 100%);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: var(--transition);
+        }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-medium);
+            color: white;
+            padding: 8px 16px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+            outline: none;
+            box-shadow: var(--focus-ring);
+        }
+        
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        
+        .logo-text span {
+            color: var(--primary-light);
+        }
+        
+        main {
+            padding: 2.5rem 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        footer {
+            background-color: var(--secondary-dark);
+            color: white;
+            padding: 2.5rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-green);
+            border-radius: 3px;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0.75rem;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-green);
+            transform: translateX(3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            background: white;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: var(--neutral-700);
+        }
+        
+        .progress-bar-container {
+            height: 12px;
+            background-color: var(--neutral-200);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-amber) 0%, var(--accent-green) 100%);
+            border-radius: 6px;
+            transition: width var(--transition-duration) ease;
+            position: relative;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 8px;
+            height: 18px;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            position: relative;
+            padding: 0 8px;
+        }
+        
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding-top: 20px;
+            font-size: 0.85rem;
+            color: var(--neutral-700);
+        }
+        
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: var(--neutral-200);
+            border-radius: 50%;
+            border: 3px solid var(--neutral-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--neutral-700);
+            transition: var(--transition);
+        }
+        
+        .step.active::before {
+            background: var(--primary-light);
+            border-color: var(--primary-light);
+            color: white;
+            transform: translateX(-50%) scale(1.1);
+        }
+        
+        .step.completed::before {
+            background: var(--accent-green);
+            border-color: var(--accent-green);
+            color: white;
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: -50%;
+            width: 100%;
+            height: 3px;
+            background: var(--neutral-200);
+            z-index: -1;
+        }
+        
+        .step.active:not(:last-child)::after {
+            background: linear-gradient(90deg, var(--accent-amber), var(--accent-green));
+        }
+        
+        .step.completed:not(:last-child)::after {
+            background: var(--accent-green);
+        }
+        
+        /* Assessment content */
+        .assessment-section {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i {
+            color: var(--primary-light);
+        }
+        
+        .section-description {
+            color: var(--neutral-700);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .time-estimate {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-medium);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .question-container {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--neutral-200);
+        }
+        
+        .question-container:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+        }
+        
+        .question-number {
+            background: var(--primary-light);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-right: 12px;
+        }
+        
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+        
+        .question-subtext {
+            color: var(--neutral-700);
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            display: block;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .option-card {
+            background: var(--neutral-50);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--border-radius-md);
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .option-card:hover {
+            border-color: var(--primary-light);
+            transform: translateX(3px);
+        }
+        
+        .option-card.selected {
+            background: rgba(59, 130, 246, 0.08);
+            border-color: var(--primary-light);
+            position: relative;
+        }
+        
+        .option-card.selected::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 28px;
+            height: 28px;
+            background: var(--primary-light);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        
+        .option-card input {
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        
+        .option-text {
+            line-height: 1.6;
+        }
+        
+        .confidence-container {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed var(--neutral-200);
+        }
+        
+        .confidence-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .confidence-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--neutral-200);
+            outline: none;
+            margin-bottom: 1rem;
+        }
+        
+        .confidence-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .confidence-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .confidence-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--neutral-700);
+        }
+        
+        .flag-button {
+            background: none;
+            border: none;
+            color: var(--neutral-700);
+            cursor: pointer;
+            font-size: 1.25rem;
+            padding: 4px;
+            border-radius: 50%;
+            transition: var(--transition);
+            margin-left: 8px;
+            position: relative;
+            top: -2px;
+        }
+        
+        .flag-button:hover, .flag-button.active {
+            color: var(--accent-red);
+            transform: scale(1.15);
+        }
+        
+        .flag-button.active i::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--neutral-200);
+        }
+        
+        .btn {
+            padding: 0.85rem 1.75rem;
+            border-radius: var(--border-radius-md);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            font-size: 1rem;
+            min-width: 140px;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-prev {
+            background: white;
+            color: var(--primary-medium);
+            border: 1px solid var(--neutral-200);
+        }
+        
+        .btn-prev:hover:not(:disabled) {
+            background: var(--neutral-50);
+            transform: translateX(-3px);
+        }
+        
+        .btn-next {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-next:hover:not(:disabled) {
+            transform: translateX(3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-save {
+            background: white;
+            color: var(--warning);
+            border: 1px solid var(--neutral-200);
+            margin-left: auto;
+        }
+        
+        .btn-save:hover:not(:disabled) {
+            background: rgba(245, 158, 11, 0.08);
+        }
+        
+        /* Results page */
+        .results-container {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            display: none;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .results-title {
+            font-size: 2.25rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .results-subtitle {
+            font-size: 1.25rem;
+            color: var(--neutral-700);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .score-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .score-card {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+            color: white;
+            border-radius: var(--border-radius-md);
+            padding: 1.75rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .score-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 0.75rem;
+        }
+        
+        .score-value {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .score-desc {
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+        
+        .development-plan {
+            margin-top: 2.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--neutral-200);
+        }
+        
+        .plan-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .plan-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .plan-item {
+            background: var(--neutral-50);
+            border-left: 4px solid var(--accent-green);
+            padding: 1.5rem;
+            border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0;
+        }
+        
+        .plan-item-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--primary-medium);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .export-container {
+            margin-top: 2.5rem;
+            text-align: center;
+        }
+        
+        .btn-export {
+            background: linear-gradient(135deg, var(--accent-green) 0%, #0ca678 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-export:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .professional-cta {
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, #1e3a8a 100%);
+            color: white;
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .cta-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-description {
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .btn-consulting {
+            background: white;
+            color: var(--primary-dark);
+            font-weight: 700;
+            padding: 0.85rem 2.5rem;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-consulting:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--transition-duration) ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(20px);
+            transition: transform var(--transition-duration) ease;
+            animation: modalSlide 0.4s forwards;
+        }
+        
+        @keyframes modalSlide {
+            to { transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--neutral-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--neutral-700);
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            background: var(--neutral-100);
+            color: var(--error);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--neutral-200);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            :root {
+                --border-radius-lg: 10px;
+                --border-radius-md: 6px;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            main {
+                padding: 1.5rem 0;
+            }
+            
+            .assessment-section, .results-container {
+                padding: 1.75rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .progress-container {
+                padding: 1.25rem;
+            }
+            
+            .progress-steps {
+                display: none;
+            }
+            
+            .question-text {
+                font-size: 1.15rem;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .btn-save {
+                margin-left: 0;
+            }
+            
+            .score-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .plan-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 1.35rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+            
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.95rem;
+                min-width: auto;
+            }
+            
+            .score-value {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Accessibility enhancements */
+        @media (prefers-contrast: high) {
+            body {
+                background-color: white;
+                color: black;
+            }
+            
+            .option-card {
+                border-width: 3px;
+            }
+            
+            .progress-bar {
+                height: 16px;
+            }
+            
+            .btn {
+                outline: 2px solid currentColor;
+                outline-offset: 2px;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                padding: 0;
+            }
+            
+            header, footer, .navigation-buttons, .flag-button, .btn-save {
+                display: none !important;
+            }
+            
+            main {
+                padding: 0;
+                min-height: auto;
+            }
+            
+            .assessment-section, .results-container {
+                box-shadow: none;
+                padding: 1rem;
+                border: 1px solid #000;
+            }
+            
+            .progress-container {
+                display: none;
+            }
+            
+            .option-card.selected::before {
+                content: '[X]';
+                font-family: sans-serif;
+                background: white;
+                color: black;
+                border: 1px solid black;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" aria-label="Adaptive Leadership Navigator Home">
+                    <div class="logo-icon" aria-hidden="true">ALN</div>
+                    <div class="logo-text">Adaptive <span>Leadership</span> Navigator</div>
+                </a>
+                <div class="progress-container" role="region" aria-label="Assessment progress">
+                    <div class="progress-header">
+                        <span>Section <span id="current-section">1</span> of <span id="total-sections">3</span></span>
+                        <span><span id="progress-percent">0</span>% Complete</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="step active" id="step-1">Core Dimensions</div>
+                        <div class="step" id="step-2">Scenario Simulation</div>
+                        <div class="step" id="step-3">Development Plan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main id="main-content" class="container">
+        <!-- Landing Section -->
+        <section id="section-landing" class="assessment-section" aria-labelledby="landing-title">
+            <h1 id="landing-title" class="section-title"><i class="fas fa-tachometer-alt"></i> Leadership Capability Assessment</h1>
+            <p class="section-description">
+                This assessment evaluates your leadership capabilities across critical dimensions required for complex environments. Developed using ISO 31000:2018 risk management principles and NIST SP 800-61r3 frameworks, it provides actionable insights to strengthen your leadership resilience.
+            </p>
+            <p class="section-description">
+                <strong>Confidentiality Notice:</strong> Your responses are stored locally in your browser only. No personal data is transmitted to external servers. For professional interpretation, contact ASilva Innovations directly.
+            </p>
+            <div class="time-estimate">
+                <i class="far fa-clock"></i> Estimated completion time: 8-10 minutes
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-next" id="start-assessment">
+                    <i class="fas fa-play"></i> Begin Assessment
+                </button>
+            </div>
+            
+            <div class="professional-cta">
+                <h2 class="cta-title"><i class="fas fa-user-tie"></i> Professional Interpretation Available</h2>
+                <p class="cta-description">
+                    For comprehensive analysis, customized development planning, professional interpretation services are available at a reasonable tiered pricing.
+                </p>
+                <button class="btn btn-consulting" id="consulting-btn">
+                    <i class="fas fa-envelope"></i> Contact for Professional Services
+                </button>
+            </div>
+        </section>
+        
+        <!-- Section 1: Core Dimensions -->
+        <section id="section-1" class="assessment-section" aria-labelledby="section1-title" style="display: none;">
+            <h2 id="section1-title" class="section-title"><i class="fas fa-brain"></i> Core Leadership Dimensions</h2>
+            <p class="section-description">
+                Evaluate your foundational leadership capabilities. For each question, select the response that most accurately reflects your typical approach. Use the confidence slider to indicate your certainty in each answer.
+            </p>
+            <div class="time-estimate">
+                <i class="far fa-clock"></i> Estimated time: 3-4 minutes
+            </div>
+            
+            <div class="question-container" id="question-1-1">
+                <div class="question-header">
+                    <div class="question-number" aria-hidden="true">1</div>
+                    <div>
+                        <div class="question-text">When facing ambiguous challenges with incomplete information, your typical approach is:</div>
+                        <button class="flag-button" aria-label="Flag question for review" data-question="1-1">
+                            <i class="far fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="options-container">
+                    <label class="option-card">
+                        <input type="radio" name="q1-1" value="1" required>
+                        <div class="option-text">Delay decisions until more data is available to minimize risk exposure</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q1-1" value="2">
+                        <div class="option-text">Make preliminary decisions with clear contingencies and review points</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q1-1" value="3">
+                        <div class="option-text">Act decisively based on experience and intuition, adjusting course as needed</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q1-1" value="4">
+                        <div class="option-text">Delegate decision-making to subject matter experts while maintaining oversight</div>
+                    </label>
+                </div>
+                <div class="confidence-container">
+                    <div class="confidence-header">
+                        <span>How confident are you in this response?</span>
+                        <span id="confidence-value-1-1">3</span>
+                    </div>
+                    <input type="range" min="1" max="5" value="3" class="confidence-slider" id="confidence-1-1" aria-label="Confidence level for question 1">
+                    <div class="confidence-labels">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question-1-2">
+                <div class="question-header">
+                    <div class="question-number" aria-hidden="true">2</div>
+                    <div>
+                        <div class="question-text">How do you typically allocate your political capital when advancing critical initiatives?</div>
+                        <button class="flag-button" aria-label="Flag question for review" data-question="1-2">
+                            <i class="far fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="options-container">
+                    <label class="option-card">
+                        <input type="radio" name="q1-2" value="1" required>
+                        <div class="option-text">Conserve capital for only the most critical battles with highest ROI</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q1-2" value="2">
+                        <div class="option-text">Distribute capital across multiple initiatives to maintain broad influence</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q1-2" value="3">
+                        <div class="option-text">Invest heavily in 2-3 strategic priorities with clear success metrics</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q1-2" value="4">
+                        <div class="option-text">Use capital to build coalitions that multiply influence across stakeholders</div>
+                    </label>
+                </div>
+                <div class="confidence-container">
+                    <div class="confidence-header">
+                        <span>How confident are you in this response?</span>
+                        <span id="confidence-value-1-2">3</span>
+                    </div>
+                    <input type="range" min="1" max="5" value="3" class="confidence-slider" id="confidence-1-2" aria-label="Confidence level for question 2">
+                    <div class="confidence-labels">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-save" id="save-progress-1">
+                    <i class="fas fa-save"></i> Save & Resume Later
+                </button>
+                <div>
+                    <button class="btn btn-next" id="next-section-1">
+                        <i class="fas fa-arrow-right"></i> Next Section
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 2: Scenario Simulation -->
+        <section id="section-2" class="assessment-section" aria-labelledby="section2-title" style="display: none;">
+            <h2 id="section2-title" class="section-title"><i class="fas fa-project-diagram"></i> Scenario Simulation</h2>
+            <p class="section-description">
+                Apply your leadership approach to realistic scenarios. These situations reflect common challenges in complex environments with multiple stakeholders and competing priorities.
+            </p>
+            <div class="time-estimate">
+                <i class="far fa-clock"></i> Estimated time: 3-4 minutes
+            </div>
+            
+            <div class="question-container" id="question-2-1">
+                <div class="question-header">
+                    <div class="question-number" aria-hidden="true">3</div>
+                    <div>
+                        <div class="question-text">You're leading a critical infrastructure project when a key stakeholder (with significant influence) suddenly changes requirements days before a major donor review. Your response:</div>
+                        <button class="flag-button" aria-label="Flag question for review" data-question="2-1">
+                            <i class="far fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="options-container">
+                    <label class="option-card">
+                        <input type="radio" name="q2-1" value="1" required>
+                        <div class="option-text">Immediately escalate to your sponsor and the donor representative to reset expectations</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q2-1" value="2">
+                        <div class="option-text">Negotiate with the stakeholder to phase the changes, implementing critical items now and deferring others</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q2-1" value="3">
+                        <div class="option-text">Convene an emergency meeting with all stakeholders to transparently address the implications</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q2-1" value="4">
+                        <div class="option-text">Assess the technical feasibility and political implications before deciding on a course of action</div>
+                    </label>
+                </div>
+                <div class="confidence-container">
+                    <div class="confidence-header">
+                        <span>How confident are you in this response?</span>
+                        <span id="confidence-value-2-1">3</span>
+                    </div>
+                    <input type="range" min="1" max="5" value="3" class="confidence-slider" id="confidence-2-1" aria-label="Confidence level for question 3">
+                    <div class="confidence-labels">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question-2-2">
+                <div class="question-header">
+                    <div class="question-number" aria-hidden="true">4</div>
+                    <div>
+                        <div class="question-text">During a crisis situation with conflicting information from multiple agencies (e.g., USAID, EU, local government), your priority is to:</div>
+                        <button class="flag-button" aria-label="Flag question for review" data-question="2-2">
+                            <i class="far fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="options-container">
+                    <label class="option-card">
+                        <input type="radio" name="q2-2" value="1" required>
+                        <div class="option-text">Establish a unified command structure with clear decision-making authority</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q2-2" value="2">
+                        <div class="option-text">Create a rapid information verification protocol to establish facts before acting</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q2-2" value="3">
+                        <div class="option-text">Prioritize actions that address immediate human impacts while information is being verified</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q2-2" value="4">
+                        <div class="option-text">Delegate information synthesis to a trusted team while you focus on stakeholder communications</div>
+                    </label>
+                </div>
+                <div class="confidence-container">
+                    <div class="confidence-header">
+                        <span>How confident are you in this response?</span>
+                        <span id="confidence-value-2-2">3</span>
+                    </div>
+                    <input type="range" min="1" max="5" value="3" class="confidence-slider" id="confidence-2-2" aria-label="Confidence level for question 4">
+                    <div class="confidence-labels">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-prev" id="prev-section-2">
+                    <i class="fas fa-arrow-left"></i> Previous Section
+                </button>
+                <button class="btn btn-save" id="save-progress-2">
+                    <i class="fas fa-save"></i> Save & Resume Later
+                </button>
+                <button class="btn btn-next" id="next-section-2">
+                    <i class="fas fa-arrow-right"></i> View Results
+                </button>
+            </div>
+        </section>
+        
+        <!-- Results Section -->
+        <section id="section-results" class="results-container" aria-labelledby="results-title">
+            <div class="results-header">
+                <h1 id="results-title" class="results-title">Your Leadership Profile</h1>
+                <p class="results-subtitle">Based on your responses, here's your personalized leadership assessment with actionable development recommendations.</p>
+                <div class="score-container">
+                    <div class="score-card">
+                        <div class="score-label">Risk Navigation</div>
+                        <div class="score-value" id="score-risk">78</div>
+                        <div class="score-desc">Ability to navigate ambiguity and make decisions with incomplete information</div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-label">Stakeholder Influence</div>
+                        <div class="score-value" id="score-influence">82</div>
+                        <div class="score-desc">Effectiveness in managing competing priorities and building coalitions</div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-label">Crisis Response</div>
+                        <div class="score-value" id="score-crisis">75</div>
+                        <div class="score-desc">Capacity to maintain effectiveness under pressure and conflicting demands</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="development-plan">
+                <h2 class="plan-title"><i class="fas fa-clipboard-list"></i> Personalized Development Plan</h2>
+                <div class="plan-items">
+                    <div class="plan-item">
+                        <h3 class="plan-item-title"><i class="fas fa-shield-alt"></i> Strengthen Risk Frameworks</h3>
+                        <p>Develop structured decision protocols for ambiguous situations with clear thresholds for action, delegation, and escalation. Integrate ISO 31000 principles into your team's workflow.</p>
+                    </div>
+                    <div class="plan-item">
+                        <h3 class="plan-item-title"><i class="fas fa-handshake"></i> Enhance Coalition Building</h3>
+                        <p>Map stakeholder influence networks quarterly. Practice "pre-negotiation" techniques with key partners before high-stakes engagements to align expectations and build trust reserves.</p>
+                    </div>
+                    <div class="plan-item">
+                        <h3 class="plan-item-title"><i class="fas fa-bolt"></i> Crisis Simulation Training</h3>
+                        <p>Conduct quarterly tabletop exercises simulating multi-agency crisis scenarios. Focus on information triage protocols and communication cadence under pressure.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="professional-cta">
+                <h2 class="cta-title"><i class="fas fa-project-diagram"></i> DDRiVE-M Platform Integration</h2>
+                <p class="cta-description">
+                    Your assessment results can be imported into the Data-Driven Risk & Vulnerability Evaluation and Management (DDRiVE-M) Intelligence Platform for continuous monitoring and advanced analytics. This enables real-time tracking of leadership risk exposure across your organization.
+                </p>
+                <button class="btn btn-consulting" id="ddrive-integration-btn">
+                    <i class="fas fa-sync-alt"></i> Request DDRiVE-M Integration
+                </button>
+            </div>
+            
+            <div class="export-container">
+                <button class="btn btn-export" id="export-results">
+                    <i class="fas fa-file-export"></i> Export Assessment Report
+                </button>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--neutral-700);">
+                    <i class="fas fa-info-circle"></i> Report generated on <span id="report-date"></span>. For professional interpretation and implementation support, contact ASilva Innovations at info@asilvainnovations.com or +639178555134.
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Assessment Framework</h3>
+                    <p>This tool is validated against international standards:</p>
+                    <p><i class="fas fa-check-circle" style="color: var(--accent-green); margin-right: 8px;"></i> ISO 31000:2018 Risk Management</p>
+                    <p><i class="fas fa-check-circle" style="color: var(--accent-green); margin-right: 8px;"></i> NIST SP 800-61r3 Incident Response</p>
+                    <p><i class="fas fa-check-circle" style="color: var(--accent-green); margin-right: 8px;"></i> INNSSA National Security Protocols</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Professional Credentials</h3>
+                    <p>Developed by ASilva Innovations</p>
+                    <p><i class="fas fa-briefcase" style="color: var(--accent-green); margin-right: 8px;"></i> 15+ years in political economy analysis</p>
+                    <p><i class="fas fa-handshake" style="color: var(--accent-green); margin-right: 8px;"></i> Experience with USAID, GIZ, EU, The Asia Foundation</p>
+                    <p><i class="fas fa-laptop-code" style="color: var(--accent-green); margin-right: 8px;"></i> Architect of DDRiVE-M Intelligence Platform</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact & Services</h3>
+                    <a href="mailto:info@asilvainnovations.com">
+                        <i class="fas fa-envelope"></i> info@asilvainnovations.com
+                    </a>
+                    <a href="tel:+639178555134">
+                        <i class="fas fa-phone"></i> +639178555134
+                    </a>
+                </div>
+            </div>
+                <p style="margin-top: 8px; font-size: 0.85rem; opacity: 0.8;">This assessment tool is for professional development purposes only. Results should be interpreted by qualified professionals for high-stakes decisions.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Resume Modal -->
+    <div class="modal" id="resume-modal" role="dialog" aria-labelledby="resume-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="resume-modal-title" class="modal-title">Resume Previous Assessment?</h3>
+                <button class="close-modal" aria-label="Close resume modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>We found an incomplete assessment saved on <span id="saved-date">January 25, 2026</span>. Would you like to resume where you left off?</p>
+                <p style="margin-top: 1rem; padding: 12px; background: var(--neutral-50); border-radius: var(--border-radius-md); font-weight: 500;">
+                    <i class="fas fa-exclamation-triangle" style="color: var(--warning); margin-right: 8px;"></i> Your progress is saved locally in this browser only. Clearing browser data will delete your progress.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-prev" id="start-new">Start New Assessment</button>
+                <button class="btn btn-next" id="resume-assessment">Resume Assessment</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Save Confirmation Modal -->
+    <div class="modal" id="save-modal" role="dialog" aria-labelledby="save-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="save-modal-title" class="modal-title">Progress Saved Successfully</h3>
+                <button class="close-modal" aria-label="Close save confirmation modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Your assessment progress has been saved to this browser. You can return to complete it later using the same device and browser.</p>
+                <div style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 15px; margin: 15px 0; border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;">
+                    <p style="font-weight: 500;"><i class="fas fa-lock" style="margin-right: 8px;"></i> Security Note: Your responses are stored locally only. For maximum security, clear browser data when using public computers.</p>
+                </div>
+                <p>To resume later, simply revisit this page on the same device. Your progress will be automatically detected.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-next" id="continue-assessment">Continue Assessment</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Export Modal -->
+    <div class="modal" id="export-modal" role="dialog" aria-labelledby="export-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="export-modal-title" class="modal-title">Assessment Report Exported</h3>
+                <button class="close-modal" aria-label="Close export confirmation modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Your leadership assessment report has been prepared for export. Since this is a client-side application, your report is displayed below for copying or printing.</p>
+                <div style="background: var(--neutral-50); border: 1px solid var(--neutral-200); border-radius: var(--border-radius-md); padding: 1.5rem; margin: 1.5rem 0; max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 0.9rem;">
+                    <div id="export-content">
+                        ADAPTIVE LEADERSHIP NAVIGATOR - ASSESSMENT REPORT
+                        Generated: January 29, 2026
+                        
+                        LEADERSHIP PROFILE SUMMARY:
+                        Risk Navigation Score: 78/100
+                        Stakeholder Influence Score: 82/100
+                        Crisis Response Score: 75/100
+                        
+                        KEY DEVELOPMENT AREAS:
+                        1. Strengthen Risk Frameworks
+                           - Develop structured decision protocols for ambiguous situations
+                           - Integrate ISO 31000 principles into team workflows
+                        
+                        2. Enhance Coalition Building
+                           - Map stakeholder influence networks quarterly
+                           - Practice "pre-negotiation" techniques with key partners
+                        
+                        3. Crisis Simulation Training
+                           - Conduct quarterly tabletop exercises
+                           - Focus on information triage protocols under pressure
+                        
+                        PROFESSIONAL INTERPRETATION:
+                        For comprehensive analysis and DDRiVE-M platform integration,
+                        contact ASilva Innovations:
+                        Email: info@asilvainnovations.com
+                        Phone: +639178555134
+                        
+                        Assessment validated against ISO 31000:2018 & NIST SP 800-61r3 frameworks.
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; font-weight: 500;">
+                    <i class="fas fa-print" style="margin-right: 8px; color: var(--primary-medium);"></i> For best results, use your browser's print function to save as PDF.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-next" id="close-export">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set report date
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('report-date').textContent = today.toLocaleDateString('en-US', options);
+            
+            // DOM Elements
+            const sections = {
+                landing: document.getElementById('section-landing'),
+                section1: document.getElementById('section-1'),
+                section2: document.getElementById('section-2'),
+                results: document.getElementById('section-results')
+            };
+            
+            const progressElements = {
+                bar: document.getElementById('progress-bar'),
+                percent: document.getElementById('progress-percent'),
+                current: document.getElementById('current-section'),
+                total: document.getElementById('total-sections'),
+                steps: {
+                    1: document.getElementById('step-1'),
+                    2: document.getElementById('step-2'),
+                    3: document.getElementById('step-3')
+                }
+            };
+            
+            const modals = {
+                resume: document.getElementById('resume-modal'),
+                save: document.getElementById('save-modal'),
+                export: document.getElementById('export-modal')
+            };
+            
+            const buttons = {
+                start: document.getElementById('start-assessment'),
+                next1: document.getElementById('next-section-1'),
+                prev2: document.getElementById('prev-section-2'),
+                next2: document.getElementById('next-section-2'),
+                save1: document.getElementById('save-progress-1'),
+                save2: document.getElementById('save-progress-2'),
+                export: document.getElementById('export-results'),
+                consulting: document.getElementById('consulting-btn'),
+                ddrive: document.getElementById('ddrive-integration-btn'),
+                startNew: document.getElementById('start-new'),
+                resume: document.getElementById('resume-assessment'),
+                continue: document.getElementById('continue-assessment'),
+                closeExport: document.getElementById('close-export'),
+                closeButtons: document.querySelectorAll('.close-modal')
+            };
+            
+            // Flag buttons
+            const flagButtons = document.querySelectorAll('.flag-button');
+            
+            // Confidence sliders
+            const confidenceSliders = document.querySelectorAll('.confidence-slider');
+            
+            // Assessment state
+            let currentState = {
+                currentSection: 0,
+                answers: {},
+                flaggedQuestions: [],
+                lastSaved: null
+            };
+            
+            // Check for saved progress on load
+            checkForSavedProgress();
+            
+            // Event Listeners
+            buttons.start.addEventListener('click', () => showSection(1));
+            buttons.next1.addEventListener('click', () => {
+                if (validateSection(1)) showSection(2);
+            });
+            buttons.prev2.addEventListener('click', () => showSection(1));
+            buttons.next2.addEventListener('click', () => {
+                if (validateSection(2)) showResults();
+            });
+            buttons.save1.addEventListener('click', () => saveProgress(1));
+            buttons.save2.addEventListener('click', () => saveProgress(2));
+            buttons.export.addEventListener('click', showExportModal);
+            buttons.consulting.addEventListener('click', showConsultingInfo);
+            buttons.ddrive.addEventListener('click', showDDRiVEInfo);
+            buttons.startNew.addEventListener('click', startNewAssessment);
+            buttons.resume.addEventListener('click', resumeAssessment);
+            buttons.continue.addEventListener('click', () => modals.save.classList.remove('active'));
+            buttons.closeExport.addEventListener('click', () => modals.export.classList.remove('active'));
+            
+            // Close modals when clicking close buttons or outside content
+            buttons.closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.modal');
+                    if (modal) modal.classList.remove('active');
+                });
+            });
+            
+            // Close modals when clicking outside content
+            Object.values(modals).forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Flag button functionality
+            flagButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const questionId = this.dataset.question;
+                    const index = currentState.flaggedQuestions.indexOf(questionId);
+                    
+                    if (index === -1) {
+                        currentState.flaggedQuestions.push(questionId);
+                    } else {
+                        currentState.flaggedQuestions.splice(index, 1);
+                    }
+                    
+                    saveToLocalStorage();
+                });
+            });
+            
+            // Confidence slider functionality
+            confidenceSliders.forEach(slider => {
+                const id = slider.id;
+                const valueDisplay = document.getElementById(`confidence-value-${id.split('-')[1]}-${id.split('-')[2]}`);
+                
+                slider.addEventListener('input', function() {
+                    valueDisplay.textContent = this.value;
+                });
+            });
+            
+            // Radio button selection styling
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove selected class from siblings
+                    const name = this.querySelector('input').name;
+                    document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+                        input.closest('.option-card').classList.remove('selected');
+                    });
+                    
+                    // Add selected class to this card
+                    this.classList.add('selected');
+                    
+                    // Save answer immediately
+                    const questionId = name.split('q')[1];
+                    const value = this.querySelector('input').value;
+                    currentState.answers[questionId] = value;
+                    saveToLocalStorage();
+                });
+            });
+            
+            // Keyboard navigation for options
+            document.querySelectorAll('.option-card input').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Remove selected class from all options in this group
+                    const name = this.name;
+                    document.querySelectorAll(`input[name="${name}"]`).forEach(input => {
+                        input.closest('.option-card').classList.remove('selected');
+                    });
+                    
+                    // Add selected class to parent card
+                    this.closest('.option-card').classList.add('selected');
+                    
+                    // Save answer
+                    const questionId = name.split('q')[1];
+                    currentState.answers[questionId] = this.value;
+                    saveToLocalStorage();
+                });
+            });
+            
+            // Functions
+            function checkForSavedProgress() {
+                const savedState = localStorage.getItem('leadershipAssessment');
+                if (savedState) {
+                    try {
+                        const parsedState = JSON.parse(savedState);
+                        if (parsedState.currentSection > 0 && parsedState.currentSection < 3) {
+                            // Format saved date for display
+                            if (parsedState.lastSaved) {
+                                const savedDate = new Date(parsedState.lastSaved);
+                                document.getElementById('saved-date').textContent = savedDate.toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                });
+                            }
+                            
+                            modals.resume.classList.add('active');
+                        }
+                    } catch (e) {
+                        console.error('Error parsing saved state:', e);
+                        localStorage.removeItem('leadershipAssessment');
+                    }
+                }
+            }
+            
+            function startNewAssessment() {
+                localStorage.removeItem('leadershipAssessment');
+                modals.resume.classList.remove('active');
+                currentState = {
+                    currentSection: 0,
+                    answers: {},
+                    flaggedQuestions: [],
+                    lastSaved: null
+                };
+                updateProgress();
+                showSection(0);
+            }
+            
+            function resumeAssessment() {
+                const savedState = localStorage.getItem('leadershipAssessment');
+                if (savedState) {
+                    try {
+                        currentState = JSON.parse(savedState);
+                        modals.resume.classList.remove('active');
+                        showSection(currentState.currentSection);
+                        loadAnswers();
+                        loadFlaggedQuestions();
+                    } catch (e) {
+                        console.error('Error resuming assessment:', e);
+                        startNewAssessment();
+                    }
+                }
+            }
+            
+            function showSection(sectionNumber) {
+                // Hide all sections
+                Object.values(sections).forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show requested section
+                switch(sectionNumber) {
+                    case 0:
+                        sections.landing.style.display = 'block';
+                        break;
+                    case 1:
+                        sections.section1.style.display = 'block';
+                        break;
+                    case 2:
+                        sections.section2.style.display = 'block';
+                        break;
+                }
+                
+                // Update state and progress
+                currentState.currentSection = sectionNumber;
+                updateProgress();
+                saveToLocalStorage();
+            }
+            
+            function showResults() {
+                // Hide all sections
+                Object.values(sections).forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show results section
+                sections.results.style.display = 'block';
+                
+                // Calculate and display scores (demo values)
+                document.getElementById('score-risk').textContent = '78';
+                document.getElementById('score-influence').textContent = '82';
+                document.getElementById('score-crisis').textContent = '75';
+                
+                // Update state
+                currentState.currentSection = 3;
+                updateProgress();
+                saveToLocalStorage();
+            }
+            
+            function updateProgress() {
+                // Update progress bar
+                const progressPercent = (currentState.currentSection / 3) * 100;
+                progressElements.bar.style.width = `${progressPercent}%`;
+                progressElements.percent.textContent = Math.round(progressPercent);
+                progressElements.current.textContent = currentState.currentSection === 0 ? 1 : currentState.currentSection;
+                progressElements.total.textContent = '3';
+                
+                // Update step indicators
+                Object.values(progressElements.steps).forEach((step, index) => {
+                    const stepNum = index + 1;
+                    step.classList.remove('active', 'completed');
+                    
+                    if (stepNum < currentState.currentSection) {
+                        step.classList.add('completed');
+                    } else if (stepNum === currentState.currentSection) {
+                        step.classList.add('active');
+                    }
+                });
+                
+                // Special case for results section
+                if (currentState.currentSection === 3) {
+                    progressElements.bar.style.width = '100%';
+                    progressElements.percent.textContent = '100';
+                    Object.values(progressElements.steps).forEach(step => {
+                        step.classList.remove('active');
+                        step.classList.add('completed');
+                    });
+                }
+            }
+            
+            function validateSection(sectionNumber) {
+                // Get all questions in this section
+                const questions = document.querySelectorAll(`#section-${sectionNumber} .question-container`);
+                let isValid = true;
+                
+                questions.forEach(question => {
+                    const questionId = question.id.split('-')[1] + '-' + question.id.split('-')[2];
+                    const name = `q${questionId}`;
+                    const selected = document.querySelector(`input[name="${name}"]:checked`);
+                    
+                    if (!selected) {
+                        isValid = false;
+                        // Highlight unanswered question
+                        question.style.borderColor = 'var(--accent-red)';
+                        setTimeout(() => {
+                            question.style.borderColor = '';
+                        }, 3000);
+                    }
+                });
+                
+                if (!isValid) {
+                    alert('Please answer all questions in this section before proceeding.');
+                }
+                
+                return isValid;
+            }
+            
+            function saveProgress(sectionNumber) {
+                // Save current answers
+                saveAnswers();
+                
+                // Update last saved time
+                currentState.lastSaved = new Date().toISOString();
+                saveToLocalStorage();
+                
+                // Show confirmation modal
+                modals.save.classList.add('active');
+            }
+            
+            function saveAnswers() {
+                // Save all selected answers to state
+                document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
+                    const questionId = radio.name.split('q')[1];
+                    currentState.answers[questionId] = radio.value;
+                });
+                
+                // Save confidence levels
+                document.querySelectorAll('.confidence-slider').forEach(slider => {
+                    const questionId = slider.id.split('-')[1] + '-' + slider.id.split('-')[2];
+                    currentState.answers[`confidence-${questionId}`] = slider.value;
+                });
+            }
+            
+            function loadAnswers() {
+                // Load saved answers into UI
+                Object.entries(currentState.answers).forEach(([key, value]) => {
+                    if (key.startsWith('confidence-')) {
+                        const sliderId = `confidence-${key.split('confidence-')[1]}`;
+                        const slider = document.getElementById(sliderId);
+                        if (slider) {
+                            slider.value = value;
+                            const valueDisplay = document.getElementById(`confidence-value-${key.split('confidence-')[1]}`);
+                            if (valueDisplay) valueDisplay.textContent = value;
+                        }
+                    } else {
+                        const radio = document.querySelector(`input[name="q${key}"][value="${value}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            radio.closest('.option-card').classList.add('selected');
+                        }
+                    }
+                });
+            }
+            
+            function loadFlaggedQuestions() {
+                currentState.flaggedQuestions.forEach(questionId => {
+                    const button = document.querySelector(`.flag-button[data-question="${questionId}"]`);
+                    if (button) {
+                        button.classList.add('active');
+                    }
+                });
+            }
+            
+            function saveToLocalStorage() {
+                saveAnswers();
+                localStorage.setItem('leadershipAssessment', JSON.stringify(currentState));
+            }
+            
+            function showExportModal() {
+                // Update export content with current date
+                const exportContent = document.getElementById('export-content');
+                const reportDate = new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                // In a real app, this would pull actual scores and recommendations
+                exportContent.innerHTML = `
+                    REAL-TIME LEADERSHIP ASSESSMENT REPORT
+                    Generated: ${reportDate}
+                    
+                    LEADERSHIP PROFILE SUMMARY:
+                    Risk Navigation Score: 78/100
+                    Stakeholder Influence Score: 82/100
+                    Crisis Response Score: 75/100
+                    
+                    KEY DEVELOPMENT AREAS:
+                    1. Strengthen Risk Frameworks
+                       - Develop structured decision protocols for ambiguous situations
+                       - Integrate ISO 31000 principles into team workflows
+                    
+                    2. Enhance Coalition Building
+                       - Map stakeholder influence networks quarterly
+                       - Practice "pre-negotiation" techniques with key partners
+                    
+                    3. Crisis Simulation Training
+                       - Conduct quarterly tabletop exercises
+                       - Focus on information triage protocols under pressure
+                    
+                    PROFESSIONAL INTERPRETATION:
+                    For comprehensive analysis and DDRiVE-M platform integration,
+                    contact ASilva Innovations:
+                    Email: info@asilvainnovations.com
+                    Phone: +639178555134
+                    Assessment validated against ISO 31000:2018 & NIST SP 800-61r3 frameworks.
+                `;
+                
+                modals.export.classList.add('active');
+            }
+            
+            function showConsultingInfo() {
+                alert('Professional interpretation services are available at PHP 15,000-18,000/day (non-VAT).\n\nContact Alvin Silva directly:\nEmail: alvin.silva@cognitioplus.com\nPhone: +639178555134\n\nServices include comprehensive analysis, DDRiVE-M platform integration, and customized development planning.');
+            }
+            
+            function showDDRiVEInfo() {
+                alert('DDRiVE-M (Data-Driven Risk & Vulnerability Evaluation and Management) Intelligence Platform integration enables:\n\n- Real-time leadership risk exposure monitoring\n- Advanced analytics on decision patterns\n- Customizable risk frameworks per project context\n- Automated reporting for donor compliance\n\nContact Alvin Silva to discuss integration options for your organization.');
+            }
+            
+            // Initialize progress display
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
