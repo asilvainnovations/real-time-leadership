@@ -19,6 +19,7 @@
         body { 
             font-family: 'Inter', system-ui, -apple-system, sans-serif; 
             background-color: #f8fafc;
+            scroll-behavior: smooth;
         }
         .move-card { 
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
@@ -243,8 +244,32 @@
             animation: float 6s ease-in-out infinite;
         }
         
+        /* Logo styling */
+        .brand-logo {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .brand-logo:hover {
+            transform: scale(1.03);
+        }
+        .mobile-logo {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+        .footer-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
+            .brand-logo {
+                height: 40px;
+            }
             .image-container {
                 border-radius: 1.25rem;
             }
@@ -262,6 +287,26 @@
             .move-card {
                 padding: 1.5rem;
             }
+            .mobile-menu {
+                width: 260px;
+            }
+        }
+        
+        /* Animation for blob backgrounds */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 12s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: -4s;
+        }
+        .animation-delay-4000 {
+            animation-delay: -8s;
         }
     </style>
 </head>
@@ -270,11 +315,13 @@
     <!-- Navigation -->
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center gap-2">
-                    <div class="w-10 h-10 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md">RTL</div>
-                    <span class="font-bold text-xl tracking-tight text-blue-900 hidden sm:block">Real-Time Leadership</span>
-                    <span class="font-bold text-lg tracking-tight text-blue-900 sm:hidden">RTL</span>
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <a href="#" class="block" aria-label="Real-Time Leadership Home">
+                        <img src="https://appimize.app/assets/apps/user_1097/images/eeab3b519f0e_622_1097.png" 
+                             alt="Real-Time Leadership Official Logo" 
+                             class="brand-logo">
+                    </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-1 md:space-x-8 font-medium">
                     <a href="#about-section" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium">About</a>
@@ -295,9 +342,12 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-header">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold">RTL</div>
-                <span class="font-bold text-lg">Real-Time Leadership</span>
+            <div class="flex items-center gap-3">
+                <a href="#" class="block" aria-label="Real-Time Leadership Home">
+                    <img src="https://appimize.app/assets/apps/user_1097/images/eeab3b519f0e_622_1097.png" 
+                         alt="Real-Time Leadership Official Logo" 
+                         class="mobile-logo">
+                </a>
             </div>
             <button class="close-menu" id="close-menu-btn" aria-label="Close menu">
                 <i class="fas fa-times"></i>
@@ -334,7 +384,7 @@
                             <i class="fas fa-compass mr-2"></i> Explore MOVE Framework
                         </span>
                     </a>
-                    <a href="https://asilvainnovations.com/sparc" target="_blank" class="px-8 py-4 bg-white border-2 border-blue-900 text-blue-900 rounded-xl font-bold hover:bg-blue-50 transition transform hover:-translate-y-1">
+                    <a href="https://asilvainnovations.com/rtl-assessment" target="_blank" class="px-8 py-4 bg-white border-2 border-blue-900 text-blue-900 rounded-xl font-bold hover:bg-blue-50 transition transform hover:-translate-y-1">
                         <span class="flex items-center justify-center">
                             <i class="fas fa-chart-line mr-2"></i> Assess Resilience with SPARC
                         </span>
@@ -665,7 +715,7 @@
                             <span>Certificate of completion</span>
                         </li>
                     </ul>
-                    <div class="text-3xl font-bold text-blue-900 mb-4">₱12,500</div>
+                    <div class="text-3xl font-bold text-blue-900 mb-4"></div>
                     <a href="https://checkout.xendit.co/od/rtl-course" 
                        target="_blank" 
                        class="inline-block w-full px-6 py-4 bg-blue-900 text-white rounded-xl font-bold hover:bg-blue-800 transition">
@@ -678,7 +728,7 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Group Cohort Program</h3>
-                    <p class="mb-6 opacity-90">Join our facilitated cohort program with live sessions, peer learning, and personalized coaching from Alvin Silva.</p>
+                    <p class="mb-6 opacity-90">Join our facilitated cohort program with live sessions, peer learning, and personalized coaching from ASilva Innovations.</p>
                     <ul class="text-left space-y-3 mb-8">
                         <li class="flex items-start">
                             <i class="fas fa-check-circle text-amber-300 mt-1 mr-3"></i>
@@ -697,8 +747,8 @@
                             <span>Customized action plan</span>
                         </li>
                     </ul>
-                    <div class="text-3xl font-bold mb-4">₱24,500 <span class="text-lg opacity-75">/ person (min. 5)</span></div>
-                    <a href="mailto:alvin.silva@cognitioplus.com?subject=Group Cohort Program Inquiry" 
+                    <div class="text-3xl font-bold mb-4"><span class="text-lg opacity-75">/ person (min. 5)</span></div>
+                    <a href="mailto:info@asilvainnovations.com?subject=Group Cohort Program Inquiry" 
                        class="inline-block w-full px-6 py-4 bg-amber-400 text-blue-900 rounded-xl font-bold hover:bg-amber-300 transition">
                         Contact for Group Enrollment
                     </a>
@@ -708,14 +758,15 @@
             <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-8 border border-slate-200">
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <div class="w-16 h-16 bg-blue-900 rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                            A
-                        </div>
+                        <a href="https://appimize.app/assets/apps/user_1097/images/eeab3b519f0e_622_1097.png" class="block" aria-label="Real-Time Leadership">
+                            <img src="https://appimize.app/assets/apps/user_1097/images/41a64f3da705_999_1097.png" 
+                                 alt="ASilva Innovations - Real-Time Leadership Developer" 
+                                 class="w-16 h-16 rounded-xl object-contain">
+                        </a>
                     </div>
                     <div class="ml-6">
-                        <h3 class="text-xl font-bold text-blue-900 mb-2">Developed by Alvin Silva</h3>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Developed by ASilva Innovations</h3>
                         <p class="text-slate-700 mb-4">
-                            Certified National Security Risk Management Professional (INNSSA) with 15+ years of experience in political economy analysis and institutional reform across Southeast Asia.
                         </p>
                         <div class="flex flex-wrap gap-4">
                             <a href="https://asilvainnovations.com/real-time-leadership-course" 
@@ -739,9 +790,12 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div>
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="w-10 h-10 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg">RTL</div>
-                        <span class="font-bold text-xl text-white tracking-tight">Real-Time Leadership</span>
+                    <div class="flex items-center mb-6">
+                        <a href="#" class="block" aria-label="Real-Time Leadership Home">
+                            <img src="https://appimize.app/assets/apps/user_1097/images/eeab3b519f0e_622_1097.png" 
+                                 alt="Real-Time Leadership Official Logo" 
+                                 class="footer-logo">
+                        </a>
                     </div>
                     <p class="mb-6 max-w-xs">
                         Empowering leaders across Asia with practical frameworks for resilience and agile decision-making in complex environments.
@@ -777,9 +831,9 @@
                     <h3 class="text-white font-bold text-lg mb-6">Resources</h3>
                     <ul class="space-y-3">
                         <li><a href="https://asilvainnovations.com/sparc" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> SPARC Assessment Tool</a></li>
-                        <li><a href="https://asilvainnovations.com/real-time-leadership-course" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Leadership Course</a></li>
+                        <li><a href="https://asilvainnovations.com/real-time-leadership-course" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i>Real-Time Leadership Course</a></li>
                         <li><a href="https://asilvainnovations.com/blog" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Insights & Articles</a></li>
-                        <li><a href="https://asilvainnovations.com/case-studies" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Case Studies</a></li>
+                        <li><a href="https://asilvainnovations.com/strat-planner-pro" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Strategic Planner with Analytics</a></li>
                     </ul>
                 </div>
                 
@@ -788,7 +842,7 @@
                     <ul class="space-y-4">
                         <li class="flex items-start">
                             <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
-                            <span>alvin.silva@cognitioplus.com</span>
+                            <span>info@asilvainnovations.com</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-phone text-blue-400 mt-1 mr-3"></i>
@@ -796,7 +850,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
-                            <span>Makati City, Philippines</span>
+                            <span>Muntinlupa City, Philippines</span>
                         </li>
                     </ul>
                     <div class="mt-6 pt-6 border-t border-slate-800">
@@ -878,6 +932,10 @@
                 card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
                 observer.observe(card);
             });
+            
+            // Preload logo for smoother experience
+            const logo = new Image();
+            logo.src = 'https://appimize.app/assets/apps/user_1097/images/eeab3b519f0e_622_1097.png';
         });
     </script>
 </body>
