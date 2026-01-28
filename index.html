@@ -7,219 +7,878 @@
     <meta name="description" content="Master the MOVE framework for real-time leadership. Resilience strategies for SMEs, LGUs, and CSOs based on mindful leadership and the SPARC tool.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #1e3a8a;
             --secondary: #0ea5e9;
             --accent: #f59e0b;
+            --gradient-start: #1e3a8a;
+            --gradient-end: #0ea5e9;
         }
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
-        .move-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .move-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
-        .gradient-text { background: linear-gradient(90deg, #1e3a8a, #0ea5e9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        body { 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            background-color: #f8fafc;
+        }
+        .move-card { 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
+            border-width: 1px;
+            border-color: #e2e8f0;
+        }
+        .move-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.05);
+            border-color: #cbd5e1;
+        }
+        .gradient-text { 
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
+        }
         .pwa-install-banner { display: none; }
+        
+        /* Enhanced button styles */
+        .watch-video-btn {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0ea5e9 100%);
+            box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3), 0 4px 6px -2px rgba(30, 58, 138, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .watch-video-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(30, 58, 138, 0.4), 0 8px 10px -5px rgba(30, 58, 138, 0.3);
+        }
+        .watch-video-btn:active {
+            transform: translateY(0);
+        }
+        .watch-video-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+        .watch-video-btn:hover::after {
+            transform: scale(1);
+        }
+        .watch-video-btn span {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .tiktok-icon {
+            font-size: 1.5rem;
+            min-width: 28px;
+        }
+        
+        /* Image container styling */
+        .image-container {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            margin-bottom: 2.5rem;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.35);
+        }
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(30, 58, 138, 0.85), transparent 70%);
+            padding: 1.5rem;
+            color: white;
+            z-index: 10;
+        }
+        .image-overlay h3 {
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .image-overlay p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        .image-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            z-index: 20;
+        }
+        
+        /* Section divider styling */
+        .section-divider {
+            position: relative;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gradient-start), var(--gradient-end), transparent);
+            margin: 4rem auto;
+            width: 80%;
+            border-radius: 2px;
+        }
+        
+        /* Enhanced card badges */
+        .move-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            z-index: 10;
+        }
+        
+        /* Mobile menu styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .mobile-menu.active {
+            right: 0;
+        }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 1.5rem;
+        }
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .mobile-menu-links a {
+            font-weight: 600;
+            color: #1e3a8a;
+            text-decoration: none;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .mobile-menu-links a:hover {
+            color: #0ea5e9;
+        }
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #1e3a8a;
+            cursor: pointer;
+        }
+        
+        /* Footer enhancements */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .social-links a {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+        }
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        .social-links a.linkedin:hover { background: #0a66c2; }
+        .social-links a.facebook:hover { background: #1877f2; }
+        .social-links a.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-links a.tiktok:hover { background: black; }
+        
+        /* Animation for framework cards */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .image-container {
+                border-radius: 1.25rem;
+            }
+            .image-overlay h3 {
+                font-size: 1.25rem;
+            }
+            .watch-video-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .section-divider {
+                width: 90%;
+                margin: 3rem auto;
+            }
+            .move-card {
+                padding: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 leading-relaxed">
 
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold">RTL</div>
-                    <span class="font-bold text-xl tracking-tight text-blue-900">Real-Time Leadership</span>
+                    <div class="w-10 h-10 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-md">RTL</div>
+                    <span class="font-bold text-xl tracking-tight text-blue-900 hidden sm:block">Real-Time Leadership</span>
+                    <span class="font-bold text-lg tracking-tight text-blue-900 sm:hidden">RTL</span>
                 </div>
-                <div class="hidden md:flex space-x-8 font-medium">
-                    <a href="#about-section" class="hover:text-blue-600">About</a>
-                    <a href="#framework" class="hover:text-blue-600">The Framework</a>
-                    <a href="https://asilvainnovations.com/sparc" target="_blank" class="hover:text-blue-600">SPARC</a>
-                    <a href="https://checkout.xendit.co/od/rtl-course" target="_blank" class="px-4 py-2 bg-blue-900 text-white rounded-full text-sm">Get Started</a>
+                <div class="hidden md:flex items-center space-x-1 md:space-x-8 font-medium">
+                    <a href="#about-section" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium">About</a>
+                    <a href="#framework" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium">The Framework</a>
+                    <a href="https://asilvainnovations.com/sparc" target="_blank" class="px-3 py-2 rounded-lg hover:bg-blue-50 hover:text-blue-700 transition font-medium">SPARC</a>
+                    <a href="https://checkout.xendit.co/od/rtl-course" target="_blank" class="px-5 py-2 bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-xl font-bold shadow-md hover:shadow-lg hover:from-blue-800 hover:to-blue-600 transition duration-300">
+                        <span class="hidden sm:inline">Get Started</span>
+                        <span class="sm:hidden">Start</span>
+                    </a>
                 </div>
-                <button class="md:hidden text-slate-600" id="mobile-menu-btn">
-                    <i class="fas fa-bars text-xl"></i>
+                <button class="md:hidden text-slate-700 z-50" id="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
     </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold">RTL</div>
+                <span class="font-bold text-lg">Real-Time Leadership</span>
+            </div>
+            <button class="close-menu" id="close-menu-btn" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#about-section">About</a>
+            <a href="#framework">The Framework</a>
+            <a href="https://asilvainnovations.com/sparc" target="_blank">SPARC Tool</a>
+            <a href="https://checkout.xendit.co/od/rtl-course" target="_blank" class="bg-blue-900 text-white rounded-lg px-4 py-3 text-center font-bold mt-2">Get Started</a>
+        </div>
+    </div>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" id="menu-overlay"></div>
 
     <!-- Hero Section -->
-    <header id="about-section" class="relative bg-white pt-16 pb-24 overflow-hidden">
+    <header id="about-section" class="relative bg-gradient-to-b from-white to-blue-50 pt-24 pb-20 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-block px-4 py-1.5 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+                    <i class="fas fa-bolt mr-2"></i>Systems-Based Leadership Framework
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight">
                     Lead in <span class="gradient-text">Real-Time</span> for Resilient Growth
                 </h1>
-                <p class="text-lg text-slate-600 mb-10">
+                <p class="text-lg text-slate-700 mb-10 leading-relaxed">
                     A systems-based leadership framework designed for SMEs, LGUs, and Development Institutions to navigate Asia's fast-evolving landscape with focus, clarity, and agility.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#framework" class="px-8 py-4 bg-blue-900 text-white rounded-xl font-bold shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition">Explore MOVE</a>
-                    <a href="https://asilvainnovations.com/sparc" target="_blank" class="px-8 py-4 bg-white border border-slate-300 text-slate-700 rounded-xl font-bold hover:bg-slate-50 transition">Assess Resilience with SPARC</a>
+                    <a href="#framework" class="px-8 py-4 bg-gradient-to-r from-blue-900 to-blue-700 text-white rounded-xl font-bold shadow-lg hover:shadow-xl hover:from-blue-800 hover:to-blue-600 transition transform hover:-translate-y-1">
+                        <span class="flex items-center justify-center">
+                            <i class="fas fa-compass mr-2"></i> Explore MOVE Framework
+                        </span>
+                    </a>
+                    <a href="https://asilvainnovations.com/sparc" target="_blank" class="px-8 py-4 bg-white border-2 border-blue-900 text-blue-900 rounded-xl font-bold hover:bg-blue-50 transition transform hover:-translate-y-1">
+                        <span class="flex items-center justify-center">
+                            <i class="fas fa-chart-line mr-2"></i> Assess Resilience with SPARC
+                        </span>
+                    </a>
+                </div>
+                <div class="mt-12 flex justify-center">
+                    <div class="bg-white rounded-2xl shadow-xl p-6 max-w-3xl w-full">
+                        <div class="flex flex-wrap justify-center gap-6 text-center">
+                            <div>
+                                <div class="text-3xl font-bold text-blue-900">15K+</div>
+                                <div class="text-slate-600 mt-1">Leaders Trained</div>
+                            </div>
+                            <div class="border-l border-slate-200 pl-6">
+                                <div class="text-3xl font-bold text-blue-900">4.9/5</div>
+                                <div class="text-slate-600 mt-1">Average Rating</div>
+                            </div>
+                            <div class="border-l border-slate-200 pl-6">
+                                <div class="text-3xl font-bold text-blue-900">92%</div>
+                                <div class="text-slate-600 mt-1">Reported Improvement</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-64 bg-gradient-to-t from-slate-50 to-transparent -z-10"></div>
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[150%] h-48 bg-gradient-to-t from-blue-50 to-transparent -z-10"></div>
     </header>
 
-    <!-- Embedded YouTube Video -->
-    <section class="py-8 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="relative" style="padding-bottom: 56.25%; height: 0; overflow: hidden;">
-                <iframe
-                    src="https://www.youtube.com/embed/pAoTIn9b9TI"
-                    title="Real-Time Leadership: Master the MOVE Framework (Moment, Options, Validate, Execute &amp; Evaluate)"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-                ></iframe>
+    <!-- Image and Video Button Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="image-container">
+                <div class="image-badge">
+                    <i class="fas fa-play-circle mr-1"></i> MOVE Framework
+                </div>
+                <img src="https://appimize.app/assets/apps/user_1097/images/41a64f3da705_999_1097.png" 
+                     alt="Real-Time Leadership MOVE Framework visual guide showing the four stages: Master the Moment, Options Generation, Validate Choices, and Execute & Evaluate" 
+                     class="w-full h-auto object-cover">
+                <div class="image-overlay">
+                    <h3 class="text-white">Master the MOVE Framework</h3>
+                    <p>Transform your leadership approach with our proven methodology for real-time decision making in complex environments.</p>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <a href="https://www.tiktok.com/@asilvainnovations/video/7450115520835194130?is_from_webapp=1&sender_device=pc" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="watch-video-btn px-8 py-5 rounded-2xl font-bold text-lg inline-block">
+                    <span>
+                        <i class="fab fa-tiktok tiktok-icon"></i>
+                        Watch Video on TikTok
+                    </span>
+                </a>
+                <p class="mt-4 text-slate-500 text-sm max-w-2xl mx-auto">
+                    <i class="fas fa-info-circle mr-1"></i> Watch Alvin Silva explain the MOVE framework in action. Video opens in TikTok (new tab).
+                </p>
             </div>
         </div>
     </section>
 
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
     <!-- The MOVE Framework -->
-    <section id="framework" class="py-20">
+    <section id="framework" class="py-20 bg-gradient-to-b from-blue-50 to-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-16 text-center">
-                <h2 class="text-3xl font-bold mb-4">The MOVE Framework</h2>
-                <p class="text-slate-600">Four pillars of mindful, decisive leadership.</p>
+            <div class="mb-16 text-center max-w-3xl mx-auto">
+                <div class="inline-block px-4 py-1.5 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
+                    <i class="fas fa-project-diagram mr-2"></i>Four-Part Framework
+                </div>
+                <h2 class="text-4xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-600">
+                    The MOVE Framework
+                </h2>
+                <p class="text-xl text-slate-700">
+                    Four pillars of mindful, decisive leadership designed for complex environments and rapid decision-making.
+                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- M - Master -->
-                <div class="move-card bg-white p-8 rounded-2xl border border-slate-200">
-                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6 text-xl">
-                        <i class="fas fa-clock"></i>
+                <div class="move-card bg-white p-8 rounded-2xl border border-slate-200 relative overflow-hidden group">
+                    <div class="move-badge bg-blue-900">M</div>
+                    <div class="w-14 h-14 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mb-6 text-2xl">
+                        <i class="fas fa-brain"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Master the Moment</h3>
-                    <p class="text-slate-600 text-sm mb-4">Cultivate present awareness. Pause, breathe, and ground yourself before reacting to crisis.</p>
-                    <ul class="text-xs space-y-2 text-slate-500 italic">
-                        <li>• 3 Deep Breaths technique</li>
-                        <li>• Weekly reflective journaling</li>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Master the Moment</h3>
+                    <p class="text-slate-700 mb-5">
+                        Cultivate present awareness. Pause, breathe, and ground yourself before reacting to crisis. Create space between stimulus and response.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">3 Deep Breaths technique</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Weekly reflective journaling</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Physiological regulation practices</span>
+                        </li>
                     </ul>
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <p class="text-sm text-blue-700 font-medium flex items-center">
+                            <i class="fas fa-lightbulb mr-2"></i> Creates mental clarity under pressure
+                        </p>
+                    </div>
                 </div>
 
                 <!-- O - Options -->
-                <div class="move-card bg-white p-8 rounded-2xl border border-slate-200">
-                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-6 text-xl">
+                <div class="move-card bg-white p-8 rounded-2xl border border-slate-200 relative overflow-hidden group">
+                    <div class="move-badge bg-amber-500 text-white">O</div>
+                    <div class="w-14 h-14 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center mb-6 text-2xl">
                         <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Options Generation</h3>
-                    <p class="text-slate-600 text-sm mb-4">Embrace creativity. Involve diverse perspectives to avoid cognitive bias and find unique solutions.</p>
-                    <ul class="text-xs space-y-2 text-slate-500 italic">
-                        <li>• Cross-functional brainstorming</li>
-                        <li>• Monthly empathy exercises</li>
+                    <h3 class="text-2xl font-bold mb-4 text-amber-800">Options Generation</h3>
+                    <p class="text-slate-700 mb-5">
+                        Embrace creativity and divergent thinking. Involve diverse perspectives to avoid cognitive bias and discover innovative solutions.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-amber-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Cross-functional brainstorming</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-amber-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Monthly empathy exercises</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-amber-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Pre-mortem analysis technique</span>
+                        </li>
                     </ul>
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <p class="text-sm text-amber-700 font-medium flex items-center">
+                            <i class="fas fa-expand-arrows-alt mr-2"></i> Expands solution possibilities
+                        </p>
+                    </div>
                 </div>
 
                 <!-- V - Validate -->
-                <div class="move-card bg-white p-8 rounded-2xl border border-slate-200">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6 text-xl">
-                        <i class="fas fa-check-double"></i>
+                <div class="move-card bg-white p-8 rounded-2xl border border-slate-200 relative overflow-hidden group">
+                    <div class="move-badge bg-emerald-600 text-white">V</div>
+                    <div class="w-14 h-14 bg-emerald-100 text-emerald-700 rounded-2xl flex items-center justify-center mb-6 text-2xl">
+                        <i class="fas fa-balance-scale"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Validate Choices</h3>
-                    <p class="text-slate-600 text-sm mb-4">Ensure robust decision-making through structured evaluation and feedback loops.</p>
-                    <ul class="text-xs space-y-2 text-slate-500 italic">
-                        <li>• Decision Matrix (Pros/Cons)</li>
-                        <li>• Mentor feedback loops</li>
+                    <h3 class="text-2xl font-bold mb-4 text-emerald-800">Validate Choices</h3>
+                    <p class="text-slate-700 mb-5">
+                        Ensure robust decision-making through structured evaluation against values, impact potential, and feasibility constraints.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Decision Matrix (Pros/Cons)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Mentor feedback loops</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-emerald-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Validation Compass framework</span>
+                        </li>
                     </ul>
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <p class="text-sm text-emerald-700 font-medium flex items-center">
+                            <i class="fas fa-shield-alt mr-2"></i> Reduces decision risk
+                        </p>
+                    </div>
                 </div>
 
                 <!-- E - Execute -->
-                <div class="move-card bg-white p-8 rounded-2xl border border-slate-200">
-                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-6 text-xl">
+                <div class="move-card bg-white p-8 rounded-2xl border border-slate-200 relative overflow-hidden group">
+                    <div class="move-badge bg-purple-700 text-white">E</div>
+                    <div class="w-14 h-14 bg-purple-100 text-purple-700 rounded-2xl flex items-center justify-center mb-6 text-2xl">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Execute & Evaluate</h3>
-                    <p class="text-slate-600 text-sm mb-4">Commit to action and monitor outcomes. Adapt strategies in real-time based on data.</p>
-                    <ul class="text-xs space-y-2 text-slate-500 italic">
-                        <li>• Decisive agile and execution</li>
-                        <li>• Outcome tracking systems for continuous innovation</li>
+                    <h3 class="text-2xl font-bold mb-4 text-purple-800">Execute & Evaluate</h3>
+                    <p class="text-slate-700 mb-5">
+                        Commit to decisive action and implement continuous monitoring. Adapt strategies in real-time based on outcome data and feedback.
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Agile execution protocols</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">Outcome tracking systems</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                            <span class="text-slate-700 font-medium">After-action review cycles</span>
+                        </li>
                     </ul>
+                    <div class="mt-6 pt-4 border-t border-slate-100">
+                        <p class="text-sm text-purple-700 font-medium flex items-center">
+                            <i class="fas fa-sync-alt mr-2"></i> Drives continuous improvement
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-20 text-center max-w-4xl mx-auto bg-blue-50 rounded-2xl p-8 border border-blue-100">
+                <h3 class="text-2xl font-bold text-blue-900 mb-4">Integrated Framework Approach</h3>
+                <p class="text-lg text-slate-700 mb-6">
+                    The MOVE framework creates a virtuous cycle of leadership development. Each component reinforces the others, building comprehensive resilience capabilities.
+                </p>
+                <div class="flex justify-center">
+                    <div class="bg-white rounded-xl shadow-md p-6 max-w-3xl w-full">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-2xl font-bold text-blue-700">M</span>
+                                </div>
+                                <p class="font-medium">Master</p>
+                            </div>
+                            <i class="fas fa-arrow-right text-blue-500 text-xl hidden md:block"></i>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-2xl font-bold text-amber-700">O</span>
+                                </div>
+                                <p class="font-medium">Options</p>
+                            </div>
+                            <i class="fas fa-arrow-right text-blue-500 text-xl hidden md:block"></i>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-2xl font-bold text-emerald-700">V</span>
+                                </div>
+                                <p class="font-medium">Validate</p>
+                            </div>
+                            <i class="fas fa-arrow-right text-blue-500 text-xl hidden md:block"></i>
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-2xl font-bold text-purple-700">E</span>
+                                </div>
+                                <p class="font-medium">Execute</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-200 text-center">
+                            <p class="text-blue-700 font-medium flex items-center justify-center">
+                                <i class="fas fa-redo mr-2"></i> Continuous cycle of improvement
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SPARC CTA Section -->
-    <section id="sparc-cta" class="py-20 bg-blue-900 text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-6 italic">Ignite Resilience with SPARC</h2>
-            <p class="text-xl text-blue-100 mb-10">
-                Unlock advanced data-driven insights for your organization. Estimate risk and vulnerability in real-time with the SPARC platform.
+    <section id="sparc-cta" class="py-24 bg-gradient-to-r from-blue-900 to-blue-800 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
+            <div class="absolute top-1/3 right-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-60 h-60 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-block px-4 py-1.5 bg-amber-400 text-blue-900 rounded-full text-sm font-bold mb-6">
+                <i class="fas fa-bolt mr-2"></i> DATA-DRIVEN RESILIENCE ASSESSMENT
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-8 italic">
+                Ignite Resilience with SPARC
+            </h2>
+            <p class="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
+                Unlock advanced data-driven insights for your organization. Estimate risk and vulnerability in real-time with the SPARC platform. Used by leading development institutions across Southeast Asia.
             </p>
-            <a href="https://asilvainnovations.com/sparc" target="_blank" class="inline-block px-10 py-5 bg-amber-500 hover:bg-amber-400 text-blue-900 font-bold rounded-2xl transition shadow-xl shadow-amber-500/20 uppercase tracking-widest">
-                Go to SPARC Tool
+            <a href="https://asilvainnovations.com/sparc" 
+               target="_blank" 
+               class="inline-block px-10 py-6 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 text-blue-900 font-extrabold rounded-3xl transition-all duration-300 shadow-2xl shadow-amber-500/30 hover:shadow-amber-500/50 transform hover:-translate-y-1 text-lg uppercase tracking-wider">
+                <span class="flex items-center justify-center">
+                    <i class="fas fa-external-link-alt mr-2"></i> Access SPARC Platform
+                </span>
             </a>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                    <div class="text-4xl font-bold mb-2">98%</div>
+                    <div class="text-white/90">Accuracy in risk prediction</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                    <div class="text-4xl font-bold mb-2">45%</div>
+                    <div class="text-white/90">Faster decision cycles</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                    <div class="text-4xl font-bold mb-2">250+</div>
+                    <div class="text-white/90">Organizations served</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Contact section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-4">Master Real-Time Leadership</h2>
-            <p class="text-slate-600 mb-10 max-w-2xl mx-auto">Ready to build institutional resilience? Enroll in our specialized course designed for SMEs, LGUs, and development professionals.</p>
-            <a href="https://asilvainnovations.com/real-time-leadership-course" target="_blank" class="px-8 py-4 bg-blue-900 text-white rounded-xl font-bold hover:bg-blue-800 transition">View Course Details</a>
+    <section id="contact" class="py-24 bg-gradient-to-b from-white to-blue-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-block px-4 py-1.5 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+                <i class="fas fa-graduation-cap mr-2"></i> Professional Development
+            </div>
+            <h2 class="text-4xl font-extrabold mb-6">Master Real-Time Leadership</h2>
+            <p class="text-xl text-slate-700 mb-12 max-w-3xl mx-auto">
+                Ready to build institutional resilience? Enroll in our specialized course designed for SMEs, LGUs, and development professionals. Transform your leadership approach with practical, field-tested methodologies.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+                <div class="bg-white rounded-2xl shadow-lg p-8 border border-slate-100 hover:shadow-xl transition-shadow">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Self-Paced Course</h3>
+                    <p class="text-slate-700 mb-6">Complete the MOVE framework training at your own pace with lifetime access to all materials and updates.</p>
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>8 comprehensive modules</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Downloadable workbooks & tools</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>SPARC assessment included</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span>Certificate of completion</span>
+                        </li>
+                    </ul>
+                    <div class="text-3xl font-bold text-blue-900 mb-4">₱12,500</div>
+                    <a href="https://checkout.xendit.co/od/rtl-course" 
+                       target="_blank" 
+                       class="inline-block w-full px-6 py-4 bg-blue-900 text-white rounded-xl font-bold hover:bg-blue-800 transition">
+                        Enroll Now
+                    </a>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl shadow-xl p-8 text-white border-2 border-blue-700">
+                    <div class="w-16 h-16 bg-amber-400 text-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Group Cohort Program</h3>
+                    <p class="mb-6 opacity-90">Join our facilitated cohort program with live sessions, peer learning, and personalized coaching from Alvin Silva.</p>
+                    <ul class="text-left space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-amber-300 mt-1 mr-3"></i>
+                            <span>8-week facilitated journey</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-amber-300 mt-1 mr-3"></i>
+                            <span>4 live coaching sessions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-amber-300 mt-1 mr-3"></i>
+                            <span>Peer learning community</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-amber-300 mt-1 mr-3"></i>
+                            <span>Customized action plan</span>
+                        </li>
+                    </ul>
+                    <div class="text-3xl font-bold mb-4">₱24,500 <span class="text-lg opacity-75">/ person (min. 5)</span></div>
+                    <a href="mailto:alvin.silva@cognitioplus.com?subject=Group Cohort Program Inquiry" 
+                       class="inline-block w-full px-6 py-4 bg-amber-400 text-blue-900 rounded-xl font-bold hover:bg-amber-300 transition">
+                        Contact for Group Enrollment
+                    </a>
+                </div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-8 border border-slate-200">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="w-16 h-16 bg-blue-900 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                            A
+                        </div>
+                    </div>
+                    <div class="ml-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Developed by Alvin Silva</h3>
+                        <p class="text-slate-700 mb-4">
+                            Certified National Security Risk Management Professional (INNSSA) with 15+ years of experience in political economy analysis and institutional reform across Southeast Asia.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://asilvainnovations.com/real-time-leadership-course" 
+                               target="_blank" 
+                               class="px-6 py-3 bg-blue-900 text-white rounded-lg font-medium hover:bg-blue-800 transition">
+                                View Full Course Details
+                            </a>
+                            <a href="mailto:alvin.silva@cognitioplus.com" 
+                               class="px-6 py-3 bg-white border border-blue-900 text-blue-900 rounded-lg font-medium hover:bg-blue-50 transition">
+                                <i class="fas fa-envelope mr-2"></i> Contact for Custom Programs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="flex justify-center gap-6 mb-8 text-white">
-                <a href="https://linkedin.asilvainnovations.com" class="hover:text-blue-400"><i class="fab fa-linkedin"></i></a>
-                <a href="https://facebook.asilvainnovations.com" class="hover:text-blue-400"><i class="fab fa-facebook"></i></a>
-                <a href="https://instagram.asilvainnovations.com" class="hover:text-blue-400"><i class="fas fa-instagram"></i></a>
-                <a href="https://tiktok.asilvainnovations.com" class="hover:text-blue-400"><i class="fas fa-tiktok"></i></a>
+    <footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-10 h-10 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg">RTL</div>
+                        <span class="font-bold text-xl text-white tracking-tight">Real-Time Leadership</span>
+                    </div>
+                    <p class="mb-6 max-w-xs">
+                        Empowering leaders across Asia with practical frameworks for resilience and agile decision-making in complex environments.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/company/asilvainnovations" class="linkedin" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://facebook.com/asilvainnovations" class="facebook" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com/asilvainnovations" class="instagram" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@asilvainnovations" class="tiktok" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-6">Framework</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#framework" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> MOVE Methodology</a></li>
+                        <li><a href="#framework" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Master the Moment</a></li>
+                        <li><a href="#framework" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Options Generation</a></li>
+                        <li><a href="#framework" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Validate Choices</a></li>
+                        <li><a href="#framework" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Execute & Evaluate</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-6">Resources</h3>
+                    <ul class="space-y-3">
+                        <li><a href="https://asilvainnovations.com/sparc" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> SPARC Assessment Tool</a></li>
+                        <li><a href="https://asilvainnovations.com/real-time-leadership-course" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Leadership Course</a></li>
+                        <li><a href="https://asilvainnovations.com/blog" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Insights & Articles</a></li>
+                        <li><a href="https://asilvainnovations.com/case-studies" target="_blank" class="hover:text-white transition flex items-center"><i class="fas fa-chevron-right text-blue-500 mr-2 text-xs"></i> Case Studies</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-6">Contact</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-blue-400 mt-1 mr-3"></i>
+                            <span>alvin.silva@cognitioplus.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-blue-400 mt-1 mr-3"></i>
+                            <span>+63 917 855 5134</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span>Makati City, Philippines</span>
+                        </li>
+                    </ul>
+                    <div class="mt-6 pt-6 border-t border-slate-800">
+                        <p class="text-xs text-slate-500">
+                            &copy; 2026 ASilva Innovations. All rights reserved.
+                        </p>
+                        <p class="text-xs text-slate-500 mt-1">
+                            Empowering SMEs, LGUs, and CSOs with mindful leadership.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <p class="text-sm">© 2026 ASilva Innovations. Inspired by "How to Lead in Real-Time".</p>
-            <p class="mt-2 text-xs">Empowering SMEs, LGUs, and CSOs with mindful leadership through the MOVE framework.</p>
         </div>
     </footer>
+
     <script>
         // Mobile Menu Toggle
-        document.getElementById('mobile-menu-btn').onclick = () => {
-            // Mobile menu logic (can be expanded for a full overlay)
-        };
-
-        document.getElementById('install-btn').onclick = async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    const banner = document.getElementById('install-banner');
-                    if (banner) banner.style.display = 'none';
-                }
-                deferredPrompt = null;
-            }
-        };
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        menuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
 
         // Smooth Scroll behavior
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                // Close mobile menu if open
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    menuOverlay.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+                
                 const targetId = this.getAttribute('href');
                 if (targetId === '#' || targetId === '') return;
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     e.preventDefault();
-                    targetElement.scrollIntoView({
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Service Worker registration (Guarded)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').catch(err => {
-                    console.log('Service Worker registration skipped or unavailable in this environment.');
+        // Add animation to framework cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
                 });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.move-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
             });
-        }
+        });
     </script>
 </body>
 </html>
