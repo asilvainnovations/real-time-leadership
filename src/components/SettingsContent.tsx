@@ -33,7 +33,7 @@ const SettingsContent: React.FC = () => {
         <CardHeader>
           <CardTitle className="text-lg flex items-center gap-2">
             <Shield className="h-5 w-5" /> Privacy & Security
-          </Title>
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
