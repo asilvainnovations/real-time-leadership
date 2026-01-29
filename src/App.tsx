@@ -9,8 +9,7 @@ import { AppProvider } from "@/contexts/AppContext";
 
 // Layouts and Pages
 import AppLayout from "./components/AppLayout";
-import Login from "./pages/Login";
-import CertificateVerification from "./pages/CertificateVerification";
+import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
