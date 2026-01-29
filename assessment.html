@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Real-time leadership assessment tool developed by ASilva Innovations, Certified National Security Risk Ma. Validated against ISO 31000:2018 & NIST SP 800-61r3 frameworks.">
-    <title>Real-Time Leadership Assessment</title>
+    <meta name="description" content="Real-time leadership assessment tool developed by ASilva Innovations.">
+    <title>Real-Time Leadership Assessment | MOVE Framework</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -33,7 +33,6 @@
             --border-radius-lg: 12px;
             --transition: all 0.3s ease;
             --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.3);
-            
             /* Reduced motion preference */
             --transition-duration: 0.3s;
         }
@@ -108,24 +107,22 @@
             padding: 1rem 0;
         }
         
-        .logo {
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
         }
         
-        .logo-icon {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.25rem;
+        .brand-logo {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .brand-logo:hover {
+            transform: scale(1.03);
         }
         
         .logo-text {
@@ -311,6 +308,38 @@
         
         .step.completed:not(:last-child)::after {
             background: var(--accent-green);
+        }
+        
+        /* MOVE Framework Badges */
+        .move-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .move-badge.m {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+        
+        .move-badge.o {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .move-badge.v {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .move-badge.e {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
         }
         
         /* Assessment content */
@@ -853,6 +882,10 @@
                 text-align: center;
             }
             
+            .brand-logo {
+                height: 40px;
+            }
+            
             main {
                 padding: 1.5rem 0;
             }
@@ -989,22 +1022,25 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="https://appimize.app/assets/apps/user_1097/images/eeab3b519f0e_622_1097.png" class="logo" aria-label="Real-Time Leadership Assessment">
-                    <div class="logo-icon" aria-hidden="true">RTL</div>
+                <a href="#" class="logo-container" aria-label="Real-Time Leadership Assessment Home">
+                    <img src="https://appimize.app/assets/apps/user_1097/images/eeab3b519f0e_622_1097.png" 
+                         alt="Real-Time Leadership Official Logo" 
+                         class="brand-logo">
                     <div class="logo-text">Real-Time <span>Leadership</span> Assessment</div>
                 </a>
                 <div class="progress-container" role="region" aria-label="Assessment progress">
                     <div class="progress-header">
-                        <span>Section <span id="current-section">1</span> of <span id="total-sections">3</span></span>
+                        <span>Section <span id="current-section">1</span> of <span id="total-sections">4</span></span>
                         <span><span id="progress-percent">0</span>% Complete</span>
                     </div>
                     <div class="progress-bar-container">
                         <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
                     </div>
                     <div class="progress-steps">
-                        <div class="step active" id="step-1">Core Dimensions</div>
-                        <div class="step" id="step-2">Scenario Simulation</div>
-                        <div class="step" id="step-3">Development Plan</div>
+                        <div class="step active" id="step-1">Master (M)</div>
+                        <div class="step" id="step-2">Options (O)</div>
+                        <div class="step" id="step-3">Validate (V)</div>
+                        <div class="step" id="step-4">Execute (E)</div>
                     </div>
                 </div>
             </div>
@@ -1014,15 +1050,15 @@
     <main id="main-content" class="container">
         <!-- Landing Section -->
         <section id="section-landing" class="assessment-section" aria-labelledby="landing-title">
-            <h1 id="landing-title" class="section-title"><i class="fas fa-tachometer-alt"></i> Leadership Capability Assessment</h1>
+            <h1 id="landing-title" class="section-title"><i class="fas fa-tachometer-alt"></i> MOVE Framework Leadership Assessment</h1>
             <p class="section-description">
-                This assessment evaluates your leadership capabilities across critical dimensions required for complex environments. Developed using ISO 31000:2018 risk management principles and NIST SP 800-61r3 frameworks, it provides actionable insights to strengthen your leadership resilience.
+                This assessment evaluates your leadership capabilities across the four MOVE framework dimensions: <strong>Mastery</strong>of the Moment, <strong>Options</strong> Generation, <strong>Validation</strong> of Choices, and <strong>Execution</strong> & Evaluation. This tool provides actionable insights to strengthen your leadership resilience.
             </p>
             <p class="section-description">
                 <strong>Confidentiality Notice:</strong> Your responses are stored locally in your browser only. No personal data is transmitted to external servers. For professional interpretation, contact ASilva Innovations directly.
             </p>
             <div class="time-estimate">
-                <i class="far fa-clock"></i> Estimated completion time: 8-10 minutes
+                <i class="far fa-clock"></i> Estimated completion time: 10-12 minutes
             </div>
             
             <div class="navigation-buttons">
@@ -1034,7 +1070,7 @@
             <div class="professional-cta">
                 <h2 class="cta-title"><i class="fas fa-user-tie"></i> Professional Interpretation Available</h2>
                 <p class="cta-description">
-                    For comprehensive analysis, customized development planning, professional interpretation services are available at a reasonable tiered pricing.
+                    For comprehensive analysis, customized development planning, and DDRiVE-M platform integration, professional interpretation services are available.
                 </p>
                 <button class="btn btn-consulting" id="consulting-btn">
                     <i class="fas fa-envelope"></i> Contact for Professional Services
@@ -1042,21 +1078,24 @@
             </div>
         </section>
         
-        <!-- Section 1: Core Dimensions -->
+        <!-- Section 1: Master the Moment (M) -->
         <section id="section-1" class="assessment-section" aria-labelledby="section1-title" style="display: none;">
-            <h2 id="section1-title" class="section-title"><i class="fas fa-brain"></i> Core Leadership Dimensions</h2>
+            <div class="move-badge m">
+                <i class="fas fa-brain"></i> MASTER THE MOMENT
+            </div>
+            <h2 id="section1-title" class="section-title"><i class="fas fa-mind-share"></i> Master the Moment</h2>
             <p class="section-description">
-                Evaluate your foundational leadership capabilities. For each question, select the response that most accurately reflects your typical approach. Use the confidence slider to indicate your certainty in each answer.
+                The <strong>M</strong> in MOVE stands for <strong>Master the Moment</strong>. This dimension evaluates your ability to cultivate present awareness, regulate emotions under pressure, and create space between stimulus and response before making critical decisions.
             </p>
             <div class="time-estimate">
-                <i class="far fa-clock"></i> Estimated time: 3-4 minutes
+                <i class="far fa-clock"></i> Estimated time: 2-3 minutes
             </div>
             
             <div class="question-container" id="question-1-1">
                 <div class="question-header">
                     <div class="question-number" aria-hidden="true">1</div>
                     <div>
-                        <div class="question-text">When facing ambiguous challenges with incomplete information, your typical approach is:</div>
+                        <div class="question-text">When you receive urgent, conflicting reports during a crisis situation, your immediate internal response is to:</div>
                         <button class="flag-button" aria-label="Flag question for review" data-question="1-1">
                             <i class="far fa-flag"></i>
                         </button>
@@ -1065,19 +1104,19 @@
                 <div class="options-container">
                     <label class="option-card">
                         <input type="radio" name="q1-1" value="1" required>
-                        <div class="option-text">Delay decisions until more data is available to minimize risk exposure</div>
+                        <div class="option-text"><strong>React immediately:</strong> Feel overwhelmed and make a quick decision to stop the chaos</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q1-1" value="2">
-                        <div class="option-text">Make preliminary decisions with clear contingencies and review points</div>
+                        <div class="option-text"><strong>Pause briefly:</strong> Take a few deep breaths before responding, but still feel pressured to act quickly</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q1-1" value="3">
-                        <div class="option-text">Act decisively based on experience and intuition, adjusting course as needed</div>
+                        <div class="option-text"><strong>Pause intentionally:</strong> Take 60 seconds to regulate your nervous system, assess the situation calmly, and gather key facts</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q1-1" value="4">
-                        <div class="option-text">Delegate decision-making to subject matter experts while maintaining oversight</div>
+                        <div class="option-text"><strong>Master the moment:</strong> Use a structured pause technique (e.g., 3 deep breaths), acknowledge your emotions without being controlled by them, and create mental clarity before deciding</div>
                     </label>
                 </div>
                 <div class="confidence-container">
@@ -1097,7 +1136,7 @@
                 <div class="question-header">
                     <div class="question-number" aria-hidden="true">2</div>
                     <div>
-                        <div class="question-text">How do you typically allocate your political capital when advancing critical initiatives?</div>
+                        <div class="question-text">How do you typically maintain emotional regulation when facing high-stakes decisions with incomplete information?</div>
                         <button class="flag-button" aria-label="Flag question for review" data-question="1-2">
                             <i class="far fa-flag"></i>
                         </button>
@@ -1106,19 +1145,19 @@
                 <div class="options-container">
                     <label class="option-card">
                         <input type="radio" name="q1-2" value="1" required>
-                        <div class="option-text">Conserve capital for only the most critical battles with highest ROI</div>
+                        <div class="option-text"><strong>Avoid awareness:</strong> Push emotions aside and focus only on logical analysis, often missing important intuitive signals</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q1-2" value="2">
-                        <div class="option-text">Distribute capital across multiple initiatives to maintain broad influence</div>
+                        <div class="option-text"><strong>Recognize emotions:</strong> Acknowledge feelings but struggle to prevent them from influencing decisions under pressure</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q1-2" value="3">
-                        <div class="option-text">Invest heavily in 2-3 strategic priorities with clear success metrics</div>
+                        <div class="option-text"><strong>Practice regulation:</strong> Use techniques like deep breathing or brief reflection to manage emotions before making decisions</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q1-2" value="4">
-                        <div class="option-text">Use capital to build coalitions that multiply influence across stakeholders</div>
+                        <div class="option-text"><strong>Master regulation:</strong> Consistently apply mindfulness practices, maintain situational awareness of emotional states, and leverage emotions as data points rather than letting them drive reactions</div>
                     </label>
                 </div>
                 <div class="confidence-container">
@@ -1140,27 +1179,30 @@
                 </button>
                 <div>
                     <button class="btn btn-next" id="next-section-1">
-                        <i class="fas fa-arrow-right"></i> Next Section
+                        <i class="fas fa-arrow-right"></i> Next: Options Generation
                     </button>
                 </div>
             </div>
         </section>
         
-        <!-- Section 2: Scenario Simulation -->
+        <!-- Section 2: Options Generation (O) -->
         <section id="section-2" class="assessment-section" aria-labelledby="section2-title" style="display: none;">
-            <h2 id="section2-title" class="section-title"><i class="fas fa-project-diagram"></i> Scenario Simulation</h2>
+            <div class="move-badge o">
+                <i class="fas fa-lightbulb"></i> OPTIONS GENERATION
+            </div>
+            <h2 id="section2-title" class="section-title"><i class="fas fa-lightbulb"></i> Options Generation</h2>
             <p class="section-description">
-                Apply your leadership approach to realistic scenarios. These situations reflect common challenges in complex environments with multiple stakeholders and competing priorities.
+                The <strong>O</strong> in MOVE stands for <strong>Options Generation</strong>. This dimension assesses your ability to embrace divergent thinking, avoid binary decision traps, and generate creative solutions by involving diverse perspectives and challenging assumptions.
             </p>
             <div class="time-estimate">
-                <i class="far fa-clock"></i> Estimated time: 3-4 minutes
+                <i class="far fa-clock"></i> Estimated time: 2-3 minutes
             </div>
             
             <div class="question-container" id="question-2-1">
                 <div class="question-header">
                     <div class="question-number" aria-hidden="true">3</div>
                     <div>
-                        <div class="question-text">You're leading a critical infrastructure project when a key stakeholder (with significant influence) suddenly changes requirements days before a major donor review. Your response:</div>
+                        <div class="question-text">When facing a complex problem with limited resources, your approach to generating solutions is:</div>
                         <button class="flag-button" aria-label="Flag question for review" data-question="2-1">
                             <i class="far fa-flag"></i>
                         </button>
@@ -1169,19 +1211,19 @@
                 <div class="options-container">
                     <label class="option-card">
                         <input type="radio" name="q2-1" value="1" required>
-                        <div class="option-text">Immediately escalate to your sponsor and the donor representative to reset expectations</div>
+                        <div class="option-text"><strong>Binary thinking:</strong> Focus on the obvious choice (wait for help) or its opposite (act immediately), missing creative middle paths</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q2-1" value="2">
-                        <div class="option-text">Negotiate with the stakeholder to phase the changes, implementing critical items now and deferring others</div>
+                        <div class="option-text"><strong>Limited brainstorming:</strong> Generate 2-3 options but quickly converge on the most familiar or comfortable choice</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q2-1" value="3">
-                        <div class="option-text">Convene an emergency meeting with all stakeholders to transparently address the implications</div>
+                        <div class="option-text"><strong>Divergent exploration:</strong> Actively seek multiple perspectives, use brainstorming techniques, and consider at least 3-4 distinct approaches before evaluating</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q2-1" value="4">
-                        <div class="option-text">Assess the technical feasibility and political implications before deciding on a course of action</div>
+                        <div class="option-text"><strong>Systematic innovation:</strong> Employ structured creativity methods (e.g., pre-mortem analysis, cross-functional brainstorming), challenge underlying assumptions, and generate hybrid solutions that combine the best elements of multiple approaches</div>
                     </label>
                 </div>
                 <div class="confidence-container">
@@ -1201,7 +1243,7 @@
                 <div class="question-header">
                     <div class="question-number" aria-hidden="true">4</div>
                     <div>
-                        <div class="question-text">During a crisis situation with conflicting information from multiple agencies (e.g., USAID, EU, local government), your priority is to:</div>
+                        <div class="question-text">How do you ensure diverse perspectives are included when generating options for critical decisions?</div>
                         <button class="flag-button" aria-label="Flag question for review" data-question="2-2">
                             <i class="far fa-flag"></i>
                         </button>
@@ -1210,19 +1252,19 @@
                 <div class="options-container">
                     <label class="option-card">
                         <input type="radio" name="q2-2" value="1" required>
-                        <div class="option-text">Establish a unified command structure with clear decision-making authority</div>
+                        <div class="option-text"><strong>Solo decision-making:</strong> Rely primarily on your own expertise and experience, consulting others only for implementation details</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q2-2" value="2">
-                        <div class="option-text">Create a rapid information verification protocol to establish facts before acting</div>
+                        <div class="option-text"><strong>Limited consultation:</strong> Ask 1-2 trusted colleagues for input, but tend to seek confirmation of your initial thinking</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q2-2" value="3">
-                        <div class="option-text">Prioritize actions that address immediate human impacts while information is being verified</div>
+                        <div class="option-text"><strong>Active inclusion:</strong> Deliberately seek input from team members with different backgrounds, roles, and perspectives before finalizing options</div>
                     </label>
                     <label class="option-card">
                         <input type="radio" name="q2-2" value="4">
-                        <div class="option-text">Delegate information synthesis to a trusted team while you focus on stakeholder communications</div>
+                        <div class="option-text"><strong>Structured diversity:</strong> Use formal techniques (e.g., empathy mapping, stakeholder analysis) to ensure all relevant viewpoints are represented, actively challenge groupthink, and create psychological safety for dissenting opinions</div>
                     </label>
                 </div>
                 <div class="confidence-container">
@@ -1240,13 +1282,229 @@
             
             <div class="navigation-buttons">
                 <button class="btn btn-prev" id="prev-section-2">
-                    <i class="fas fa-arrow-left"></i> Previous Section
+                    <i class="fas fa-arrow-left"></i> Previous: Master
                 </button>
                 <button class="btn btn-save" id="save-progress-2">
                     <i class="fas fa-save"></i> Save & Resume Later
                 </button>
                 <button class="btn btn-next" id="next-section-2">
-                    <i class="fas fa-arrow-right"></i> View Results
+                    <i class="fas fa-arrow-right"></i> Next: Validate Choices
+                </button>
+            </div>
+        </section>
+        
+        <!-- Section 3: Validate Choices (V) -->
+        <section id="section-3" class="assessment-section" aria-labelledby="section3-title" style="display: none;">
+            <div class="move-badge v">
+                <i class="fas fa-balance-scale"></i> VALIDATE CHOICES
+            </div>
+            <h2 id="section3-title" class="section-title"><i class="fas fa-check-double"></i> Validate Choices</h2>
+            <p class="section-description">
+                The <strong>V</strong> in MOVE stands for <strong>Validate Choices</strong>. This dimension evaluates your ability to make robust decisions through structured evaluation against values, impact potential, and feasibility constraints, using feedback loops and decision frameworks.
+            </p>
+            <div class="time-estimate">
+                <i class="far fa-clock"></i> Estimated time: 2-3 minutes
+            </div>
+            
+            <div class="question-container" id="question-3-1">
+                <div class="question-header">
+                    <div class="question-number" aria-hidden="true">5</div>
+                    <div>
+                        <div class="question-text">When evaluating competing options for a high-stakes decision, your validation process includes:</div>
+                        <button class="flag-button" aria-label="Flag question for review" data-question="3-1">
+                            <i class="far fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="options-container">
+                    <label class="option-card">
+                        <input type="radio" name="q3-1" value="1" required>
+                        <div class="option-text"><strong>Intuitive selection:</strong> Choose based on gut feeling or past experience without systematic evaluation criteria</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q3-1" value="2">
+                        <div class="option-text"><strong>Basic pros/cons:</strong> List advantages and disadvantages but lack clear weighting or decision criteria</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q3-1" value="3">
+                        <div class="option-text"><strong>Structured evaluation:</strong> Use decision matrices with weighted criteria (values alignment, impact potential, feasibility) to compare options systematically</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q3-1" value="4">
+                        <div class="option-text"><strong>Comprehensive validation:</strong> Apply the Validation Compass framework across values, impact, and feasibility dimensions, seek external feedback from mentors or peers, conduct pre-mortem analysis to identify potential failure points, and establish clear success metrics before committing</div>
+                    </label>
+                </div>
+                <div class="confidence-container">
+                    <div class="confidence-header">
+                        <span>How confident are you in this response?</span>
+                        <span id="confidence-value-3-1">3</span>
+                    </div>
+                    <input type="range" min="1" max="5" value="3" class="confidence-slider" id="confidence-3-1" aria-label="Confidence level for question 5">
+                    <div class="confidence-labels">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question-3-2">
+                <div class="question-header">
+                    <div class="question-number" aria-hidden="true">6</div>
+                    <div>
+                        <div class="question-text">How do you incorporate feedback and external perspectives when validating critical decisions?</div>
+                        <button class="flag-button" aria-label="Flag question for review" data-question="3-2">
+                            <i class="far fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="options-container">
+                    <label class="option-card">
+                        <input type="radio" name="q3-2" value="1" required>
+                        <div class="option-text"><strong>Minimal feedback:</strong> Make decisions independently and share them as final, viewing feedback as a challenge to authority</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q3-2" value="2">
+                        <div class="option-text"><strong>Reactive feedback:</strong> Seek input only when facing resistance or after problems emerge, rather than proactively during validation</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q3-2" value="3">
+                        <div class="option-text"><strong>Proactive consultation:</strong> Share draft decisions with trusted advisors or mentors to get input before finalizing</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q3-2" value="4">
+                        <div class="option-text"><strong>Systematic validation:</strong> Establish formal feedback loops with diverse stakeholders, use structured techniques (e.g., decision peer review, red team analysis), actively seek disconfirming evidence, and create safe spaces for critical evaluation before committing resources</div>
+                    </label>
+                </div>
+                <div class="confidence-container">
+                    <div class="confidence-header">
+                        <span>How confident are you in this response?</span>
+                        <span id="confidence-value-3-2">3</span>
+                    </div>
+                    <input type="range" min="1" max="5" value="3" class="confidence-slider" id="confidence-3-2" aria-label="Confidence level for question 6">
+                    <div class="confidence-labels">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-prev" id="prev-section-3">
+                    <i class="fas fa-arrow-left"></i> Previous: Options
+                </button>
+                <button class="btn btn-save" id="save-progress-3">
+                    <i class="fas fa-save"></i> Save & Resume Later
+                </button>
+                <button class="btn btn-next" id="next-section-3">
+                    <i class="fas fa-arrow-right"></i> Next: Execute & Evaluate
+                </button>
+            </div>
+        </section>
+        
+        <!-- Section 4: Execute & Evaluate (E) -->
+        <section id="section-4" class="assessment-section" aria-labelledby="section4-title" style="display: none;">
+            <div class="move-badge e">
+                <i class="fas fa-rocket"></i> EXECUTE & EVALUATE
+            </div>
+            <h2 id="section4-title" class="section-title"><i class="fas fa-rocket"></i> Execute & Evaluate</h2>
+            <p class="section-description">
+                The <strong>E</strong> in MOVE stands for <strong>Execute & Evaluate</strong>. This dimension assesses your ability to commit to decisive action, implement continuous monitoring systems, and adapt strategies in real-time based on outcome data and feedback.
+            </p>
+            <div class="time-estimate">
+                <i class="far fa-clock"></i> Estimated time: 2-3 minutes
+            </div>
+            
+            <div class="question-container" id="question-4-1">
+                <div class="question-header">
+                    <div class="question-number" aria-hidden="true">7</div>
+                    <div>
+                        <div class="question-text">Once you've validated a decision, your approach to execution and monitoring is:</div>
+                        <button class="flag-button" aria-label="Flag question for review" data-question="4-1">
+                            <i class="far fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="options-container">
+                    <label class="option-card">
+                        <input type="radio" name="q4-1" value="1" required>
+                        <div class="option-text"><strong>Set and forget:</strong> Implement the decision and move on to the next priority without systematic follow-up or monitoring</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q4-1" value="2">
+                        <div class="option-text"><strong>Basic tracking:</strong> Check progress occasionally but lack formal metrics or regular review cycles</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q4-1" value="3">
+                        <div class="option-text"><strong>Structured monitoring:</strong> Establish clear success metrics, schedule regular check-ins, and adjust course based on emerging data</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q4-1" value="4">
+                        <div class="option-text"><strong>Agile execution:</strong> Implement rapid feedback loops with real-time data monitoring, conduct after-action reviews to capture lessons learned, adapt strategies dynamically based on outcomes, and communicate progress transparently to all stakeholders</div>
+                    </label>
+                </div>
+                <div class="confidence-container">
+                    <div class="confidence-header">
+                        <span>How confident are you in this response?</span>
+                        <span id="confidence-value-4-1">3</span>
+                    </div>
+                    <input type="range" min="1" max="5" value="3" class="confidence-slider" id="confidence-4-1" aria-label="Confidence level for question 7">
+                    <div class="confidence-labels">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question-4-2">
+                <div class="question-header">
+                    <div class="question-number" aria-hidden="true">8</div>
+                    <div>
+                        <div class="question-text">How do you handle course corrections when initial execution reveals unexpected challenges or changing conditions?</div>
+                        <button class="flag-button" aria-label="Flag question for review" data-question="4-2">
+                            <i class="far fa-flag"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="options-container">
+                    <label class="option-card">
+                        <input type="radio" name="q4-2" value="1" required>
+                        <div class="option-text"><strong>Rigid adherence:</strong> Stick to the original plan despite evidence it's not working, viewing changes as failure or weakness</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q4-2" value="2">
+                        <div class="option-text"><strong>Reactive pivoting:</strong> Make adjustments only when problems become severe, often in a rushed or chaotic manner</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q4-2" value="3">
+                        <div class="option-text"><strong>Proactive adaptation:</strong> Monitor leading indicators, make incremental adjustments before problems escalate, and communicate changes clearly</div>
+                    </label>
+                    <label class="option-card">
+                        <input type="radio" name="q4-2" value="4">
+                        <div class="option-text"><strong>Continuous improvement:</strong> Build feedback mechanisms into execution from the start, conduct weekly reflection cycles, empower team members to flag issues early, pivot strategically based on data rather than emotion, and document lessons for future decisions</div>
+                    </label>
+                </div>
+                <div class="confidence-container">
+                    <div class="confidence-header">
+                        <span>How confident are you in this response?</span>
+                        <span id="confidence-value-4-2">3</span>
+                    </div>
+                    <input type="range" min="1" max="5" value="3" class="confidence-slider" id="confidence-4-2" aria-label="Confidence level for question 8">
+                    <div class="confidence-labels">
+                        <span>Low</span>
+                        <span>High</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons">
+                <button class="btn btn-prev" id="prev-section-4">
+                    <i class="fas fa-arrow-left"></i> Previous: Validate
+                </button>
+                <button class="btn btn-save" id="save-progress-4">
+                    <i class="fas fa-save"></i> Save & Resume Later
+                </button>
+                <button class="btn btn-next" id="next-section-4">
+                    <i class="fas fa-chart-line"></i> View Results
                 </button>
             </div>
         </section>
@@ -1254,41 +1512,50 @@
         <!-- Results Section -->
         <section id="section-results" class="results-container" aria-labelledby="results-title">
             <div class="results-header">
-                <h1 id="results-title" class="results-title">Your Leadership Profile</h1>
-                <p class="results-subtitle">Based on your responses, here's your personalized leadership assessment with actionable development recommendations.</p>
+                <h1 id="results-title" class="results-title">Your MOVE Framework Leadership Profile</h1>
+                <p class="results-subtitle">Based on your responses, here's your personalized leadership assessment across all four MOVE dimensions with actionable development recommendations.</p>
                 <div class="score-container">
                     <div class="score-card">
-                        <div class="score-label">Risk Navigation</div>
-                        <div class="score-value" id="score-risk">78</div>
-                        <div class="score-desc">Ability to navigate ambiguity and make decisions with incomplete information</div>
+                        <div class="score-label">Master the Moment</div>
+                        <div class="score-value" id="score-master">78</div>
+                        <div class="score-desc">Ability to regulate emotions and create mental clarity under pressure</div>
                     </div>
                     <div class="score-card">
-                        <div class="score-label">Stakeholder Influence</div>
-                        <div class="score-value" id="score-influence">82</div>
-                        <div class="score-desc">Effectiveness in managing competing priorities and building coalitions</div>
+                        <div class="score-label">Options Generation</div>
+                        <div class="score-value" id="score-options">82</div>
+                        <div class="score-desc">Capacity for divergent thinking and creative problem-solving</div>
                     </div>
                     <div class="score-card">
-                        <div class="score-label">Crisis Response</div>
-                        <div class="score-value" id="score-crisis">75</div>
-                        <div class="score-desc">Capacity to maintain effectiveness under pressure and conflicting demands</div>
+                        <div class="score-label">Validate Choices</div>
+                        <div class="score-value" id="score-validate">75</div>
+                        <div class="score-desc">Skill in structured decision-making and feedback incorporation</div>
+                    </div>
+                    <div class="score-card">
+                        <div class="score-label">Execute & Evaluate</div>
+                        <div class="score-value" id="score-execute">80</div>
+                        <div class="score-desc">Effectiveness in agile implementation and continuous improvement</div>
                     </div>
                 </div>
             </div>
             
             <div class="development-plan">
-                <h2 class="plan-title"><i class="fas fa-clipboard-list"></i> Personalized Development Plan</h2>
+                <h2 class="plan-title"><i class="fas fa-clipboard-list"></i> Personalized MOVE Framework Development Plan</h2>
                 <div class="plan-items">
                     <div class="plan-item">
-                        <h3 class="plan-item-title"><i class="fas fa-shield-alt"></i> Strengthen Risk Frameworks</h3>
-                        <p>Develop structured decision protocols for ambiguous situations with clear thresholds for action, delegation, and escalation. Integrate ISO 31000 principles into your team's workflow.</p>
+                        <h3 class="plan-item-title"><i class="fas fa-brain"></i> Strengthen Master the Moment</h3>
+                        <p>Develop daily mindfulness practices including 3-minute breathing exercises. Implement a "pause protocol" for high-stakes decisions: 60-second regulation, emotion acknowledgment, and mental clarity check before responding to crises.</p>
                     </div>
                     <div class="plan-item">
-                        <h3 class="plan-item-title"><i class="fas fa-handshake"></i> Enhance Coalition Building</h3>
-                        <p>Map stakeholder influence networks quarterly. Practice "pre-negotiation" techniques with key partners before high-stakes engagements to align expectations and build trust reserves.</p>
+                        <h3 class="plan-item-title"><i class="fas fa-lightbulb"></i> Enhance Options Generation</h3>
+                        <p>Practice structured brainstorming techniques like pre-mortem analysis and cross-functional ideation sessions. Challenge binary thinking by requiring at least 3 distinct options for every major decision. Map stakeholder perspectives quarterly.</p>
                     </div>
                     <div class="plan-item">
-                        <h3 class="plan-item-title"><i class="fas fa-bolt"></i> Crisis Simulation Training</h3>
-                        <p>Conduct quarterly tabletop exercises simulating multi-agency crisis scenarios. Focus on information triage protocols and communication cadence under pressure.</p>
+                        <h3 class="plan-item-title"><i class="fas fa-balance-scale"></i> Improve Validation Processes</h3>
+                        <p>Implement the Validation Compass framework for all critical decisions, evaluating against values alignment, impact potential, and feasibility. Establish formal mentor feedback loops and decision peer review processes before major commitments.</p>
+                    </div>
+                    <div class="plan-item">
+                        <h3 class="plan-item-title"><i class="fas fa-rocket"></i> Optimize Execution & Evaluation</h3>
+                        <p>Build agile execution protocols with weekly reflection cycles and real-time progress dashboards. Conduct monthly after-action reviews to capture lessons learned. Empower team members to flag issues early through psychological safety practices.</p>
                     </div>
                 </div>
             </div>
@@ -1318,6 +1585,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
+                    <h3>MOVE Framework</h3>
+                    <p>This assessment is based on the MOVE framework:</p>
+                    <p><i class="fas fa-brain" style="color: #3b82f6; margin-right: 8px;"></i> <strong>M</strong>aster the Moment</p>
+                    <p><i class="fas fa-lightbulb" style="color: #f59e0b; margin-right: 8px;"></i> <strong>O</strong>ptions Generation</p>
+                    <p><i class="fas fa-balance-scale" style="color: #10b981; margin-right: 8px;"></i> <strong>V</strong>alidate Choices</p>
+                    <p><i class="fas fa-rocket" style="color: #8b5cf6; margin-right: 8px;"></i> <strong>E</strong>xecute & Evaluate</p>
+                </div>
+                <div class="footer-section">
                     <h3>Assessment Framework</h3>
                     <p>This tool is validated against international standards:</p>
                     <p><i class="fas fa-check-circle" style="color: var(--accent-green); margin-right: 8px;"></i> ISO 31000:2018 Risk Management</p>
@@ -1325,7 +1600,7 @@
                     <p><i class="fas fa-check-circle" style="color: var(--accent-green); margin-right: 8px;"></i> INNSSA National Security Protocols</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Professional Credentials</h3>
+                    <h3></h3>
                     <p>Developed by ASilva Innovations</p>
                     <p><i class="fas fa-briefcase" style="color: var(--accent-green); margin-right: 8px;"></i> 15+ years in political economy analysis</p>
                     <p><i class="fas fa-handshake" style="color: var(--accent-green); margin-right: 8px;"></i> Experience with USAID, GIZ, EU, The Asia Foundation</p>
@@ -1339,8 +1614,11 @@
                     <a href="tel:+639178555134">
                         <i class="fas fa-phone"></i> +639178555134
                     </a>
+                    <p><i class="fas fa-globe"></i> asilvainnovations.com</p>
                 </div>
             </div>
+            <div class="copyright">
+                <p>&copy; 2026 ASilva Innovations. All rights reserved.</p>
                 <p style="margin-top: 8px; font-size: 0.85rem; opacity: 0.8;">This assessment tool is for professional development purposes only. Results should be interpreted by qualified professionals for high-stakes decisions.</p>
             </div>
         </div>
@@ -1400,29 +1678,38 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Your leadership assessment report has been prepared for export. Since this is a client-side application, your report is displayed below for copying or printing.</p>
+                <p>Your MOVE Framework leadership assessment report has been prepared for export. Since this is a client-side application, your report is displayed below for copying or printing.</p>
                 <div style="background: var(--neutral-50); border: 1px solid var(--neutral-200); border-radius: var(--border-radius-md); padding: 1.5rem; margin: 1.5rem 0; max-height: 300px; overflow-y: auto; font-family: monospace; font-size: 0.9rem;">
                     <div id="export-content">
-                        ADAPTIVE LEADERSHIP NAVIGATOR - ASSESSMENT REPORT
+                        MOVE FRAMEWORK LEADERSHIP ASSESSMENT REPORT
                         Generated: January 29, 2026
                         
                         LEADERSHIP PROFILE SUMMARY:
-                        Risk Navigation Score: 78/100
-                        Stakeholder Influence Score: 82/100
-                        Crisis Response Score: 75/100
+                        Master the Moment Score: 78/100
+                        Options Generation Score: 82/100
+                        Validate Choices Score: 75/100
+                        Execute & Evaluate Score: 80/100
                         
                         KEY DEVELOPMENT AREAS:
-                        1. Strengthen Risk Frameworks
-                           - Develop structured decision protocols for ambiguous situations
-                           - Integrate ISO 31000 principles into team workflows
+                        1. Strengthen Master the Moment
+                           - Develop daily mindfulness practices
+                           - Implement 60-second pause protocol for high-stakes decisions
+                           - Practice emotion regulation techniques under pressure
                         
-                        2. Enhance Coalition Building
-                           - Map stakeholder influence networks quarterly
-                           - Practice "pre-negotiation" techniques with key partners
+                        2. Enhance Options Generation
+                           - Practice structured brainstorming (pre-mortem analysis)
+                           - Require minimum 3 distinct options for major decisions
+                           - Map stakeholder perspectives quarterly
                         
-                        3. Crisis Simulation Training
-                           - Conduct quarterly tabletop exercises
-                           - Focus on information triage protocols under pressure
+                        3. Improve Validation Processes
+                           - Implement Validation Compass framework
+                           - Establish formal mentor feedback loops
+                           - Conduct decision peer reviews before major commitments
+                        
+                        4. Optimize Execution & Evaluation
+                           - Build agile execution protocols with weekly reflection
+                           - Conduct monthly after-action reviews
+                           - Create psychological safety for early issue flagging
                         
                         PROFESSIONAL INTERPRETATION:
                         For comprehensive analysis and DDRiVE-M platform integration,
@@ -1431,6 +1718,7 @@
                         Phone: +639178555134
                         
                         Assessment validated against ISO 31000:2018 & NIST SP 800-61r3 frameworks.
+                        Based on the MOVE Framework: Master, Options, Validate, Execute.
                     </div>
                 </div>
                 <p style="margin-top: 1rem; font-weight: 500;">
@@ -1455,6 +1743,8 @@
                 landing: document.getElementById('section-landing'),
                 section1: document.getElementById('section-1'),
                 section2: document.getElementById('section-2'),
+                section3: document.getElementById('section-3'),
+                section4: document.getElementById('section-4'),
                 results: document.getElementById('section-results')
             };
             
@@ -1466,7 +1756,8 @@
                 steps: {
                     1: document.getElementById('step-1'),
                     2: document.getElementById('step-2'),
-                    3: document.getElementById('step-3')
+                    3: document.getElementById('step-3'),
+                    4: document.getElementById('step-4')
                 }
             };
             
@@ -1481,8 +1772,14 @@
                 next1: document.getElementById('next-section-1'),
                 prev2: document.getElementById('prev-section-2'),
                 next2: document.getElementById('next-section-2'),
+                prev3: document.getElementById('prev-section-3'),
+                next3: document.getElementById('next-section-3'),
+                prev4: document.getElementById('prev-section-4'),
+                next4: document.getElementById('next-section-4'),
                 save1: document.getElementById('save-progress-1'),
                 save2: document.getElementById('save-progress-2'),
+                save3: document.getElementById('save-progress-3'),
+                save4: document.getElementById('save-progress-4'),
                 export: document.getElementById('export-results'),
                 consulting: document.getElementById('consulting-btn'),
                 ddrive: document.getElementById('ddrive-integration-btn'),
@@ -1517,10 +1814,20 @@
             });
             buttons.prev2.addEventListener('click', () => showSection(1));
             buttons.next2.addEventListener('click', () => {
-                if (validateSection(2)) showResults();
+                if (validateSection(2)) showSection(3);
+            });
+            buttons.prev3.addEventListener('click', () => showSection(2));
+            buttons.next3.addEventListener('click', () => {
+                if (validateSection(3)) showSection(4);
+            });
+            buttons.prev4.addEventListener('click', () => showSection(3));
+            buttons.next4.addEventListener('click', () => {
+                if (validateSection(4)) showResults();
             });
             buttons.save1.addEventListener('click', () => saveProgress(1));
             buttons.save2.addEventListener('click', () => saveProgress(2));
+            buttons.save3.addEventListener('click', () => saveProgress(3));
+            buttons.save4.addEventListener('click', () => saveProgress(4));
             buttons.export.addEventListener('click', showExportModal);
             buttons.consulting.addEventListener('click', showConsultingInfo);
             buttons.ddrive.addEventListener('click', showDDRiVEInfo);
@@ -1565,8 +1872,9 @@
             
             // Confidence slider functionality
             confidenceSliders.forEach(slider => {
-                const id = slider.id;
-                const valueDisplay = document.getElementById(`confidence-value-${id.split('-')[1]}-${id.split('-')[2]}`);
+                const parts = slider.id.split('-');
+                const questionNum = `${parts[1]}-${parts[2]}`;
+                const valueDisplay = document.getElementById(`confidence-value-${questionNum}`);
                 
                 slider.addEventListener('input', function() {
                     valueDisplay.textContent = this.value;
@@ -1618,7 +1926,7 @@
                 if (savedState) {
                     try {
                         const parsedState = JSON.parse(savedState);
-                        if (parsedState.currentSection > 0 && parsedState.currentSection < 3) {
+                        if (parsedState.currentSection > 0 && parsedState.currentSection < 5) {
                             // Format saved date for display
                             if (parsedState.lastSaved) {
                                 const savedDate = new Date(parsedState.lastSaved);
@@ -1686,6 +1994,12 @@
                     case 2:
                         sections.section2.style.display = 'block';
                         break;
+                    case 3:
+                        sections.section3.style.display = 'block';
+                        break;
+                    case 4:
+                        sections.section4.style.display = 'block';
+                        break;
                 }
                 
                 // Update state and progress
@@ -1703,24 +2017,25 @@
                 // Show results section
                 sections.results.style.display = 'block';
                 
-                // Calculate and display scores (demo values)
-                document.getElementById('score-risk').textContent = '78';
-                document.getElementById('score-influence').textContent = '82';
-                document.getElementById('score-crisis').textContent = '75';
+                // Calculate and display scores (demo values based on MOVE framework)
+                document.getElementById('score-master').textContent = '78';
+                document.getElementById('score-options').textContent = '82';
+                document.getElementById('score-validate').textContent = '75';
+                document.getElementById('score-execute').textContent = '80';
                 
                 // Update state
-                currentState.currentSection = 3;
+                currentState.currentSection = 5;
                 updateProgress();
                 saveToLocalStorage();
             }
             
             function updateProgress() {
                 // Update progress bar
-                const progressPercent = (currentState.currentSection / 3) * 100;
+                const progressPercent = (currentState.currentSection / 5) * 100;
                 progressElements.bar.style.width = `${progressPercent}%`;
                 progressElements.percent.textContent = Math.round(progressPercent);
                 progressElements.current.textContent = currentState.currentSection === 0 ? 1 : currentState.currentSection;
-                progressElements.total.textContent = '3';
+                progressElements.total.textContent = '4';
                 
                 // Update step indicators
                 Object.values(progressElements.steps).forEach((step, index) => {
@@ -1735,7 +2050,7 @@
                 });
                 
                 // Special case for results section
-                if (currentState.currentSection === 3) {
+                if (currentState.currentSection === 5) {
                     progressElements.bar.style.width = '100%';
                     progressElements.percent.textContent = '100';
                     Object.values(progressElements.steps).forEach(step => {
@@ -1793,7 +2108,8 @@
                 
                 // Save confidence levels
                 document.querySelectorAll('.confidence-slider').forEach(slider => {
-                    const questionId = slider.id.split('-')[1] + '-' + slider.id.split('-')[2];
+                    const parts = slider.id.split('-');
+                    const questionId = `${parts[1]}-${parts[2]}`;
                     currentState.answers[`confidence-${questionId}`] = slider.value;
                 });
             }
@@ -1802,11 +2118,12 @@
                 // Load saved answers into UI
                 Object.entries(currentState.answers).forEach(([key, value]) => {
                     if (key.startsWith('confidence-')) {
-                        const sliderId = `confidence-${key.split('confidence-')[1]}`;
+                        const questionId = key.split('confidence-')[1];
+                        const sliderId = `confidence-${questionId}`;
                         const slider = document.getElementById(sliderId);
                         if (slider) {
                             slider.value = value;
-                            const valueDisplay = document.getElementById(`confidence-value-${key.split('confidence-')[1]}`);
+                            const valueDisplay = document.getElementById(`confidence-value-${questionId}`);
                             if (valueDisplay) valueDisplay.textContent = value;
                         }
                     } else {
@@ -1844,44 +2161,55 @@
                 
                 // In a real app, this would pull actual scores and recommendations
                 exportContent.innerHTML = `
-                    REAL-TIME LEADERSHIP ASSESSMENT REPORT
+                    MOVE FRAMEWORK LEADERSHIP ASSESSMENT REPORT
                     Generated: ${reportDate}
                     
                     LEADERSHIP PROFILE SUMMARY:
-                    Risk Navigation Score: 78/100
-                    Stakeholder Influence Score: 82/100
-                    Crisis Response Score: 75/100
+                    Master the Moment Score: 78/100
+                    Options Generation Score: 82/100
+                    Validate Choices Score: 75/100
+                    Execute & Evaluate Score: 80/100
                     
                     KEY DEVELOPMENT AREAS:
-                    1. Strengthen Risk Frameworks
-                       - Develop structured decision protocols for ambiguous situations
-                       - Integrate ISO 31000 principles into team workflows
+                    1. Strengthen Master the Moment
+                       - Develop daily mindfulness practices
+                       - Implement 60-second pause protocol for high-stakes decisions
+                       - Practice emotion regulation techniques under pressure
                     
-                    2. Enhance Coalition Building
-                       - Map stakeholder influence networks quarterly
-                       - Practice "pre-negotiation" techniques with key partners
+                    2. Enhance Options Generation
+                       - Practice structured brainstorming (pre-mortem analysis)
+                       - Require minimum 3 distinct options for major decisions
+                       - Map stakeholder perspectives quarterly
                     
-                    3. Crisis Simulation Training
-                       - Conduct quarterly tabletop exercises
-                       - Focus on information triage protocols under pressure
+                    3. Improve Validation Processes
+                       - Implement Validation Compass framework
+                       - Establish formal mentor feedback loops
+                       - Conduct decision peer reviews before major commitments
+                    
+                    4. Optimize Execution & Evaluate
+                       - Build agile execution protocols with weekly reflection
+                       - Conduct monthly after-action reviews
+                       - Create psychological safety for early issue flagging
                     
                     PROFESSIONAL INTERPRETATION:
                     For comprehensive analysis and DDRiVE-M platform integration,
                     contact ASilva Innovations:
                     Email: info@asilvainnovations.com
                     Phone: +639178555134
+                    
                     Assessment validated against ISO 31000:2018 & NIST SP 800-61r3 frameworks.
+                    Based on the MOVE Framework: Master, Options, Validate, Execute.
                 `;
                 
                 modals.export.classList.add('active');
             }
             
             function showConsultingInfo() {
-                alert('Professional interpretation services are available at PHP 15,000-18,000/day (non-VAT).\n\nContact Alvin Silva directly:\nEmail: alvin.silva@cognitioplus.com\nPhone: +639178555134\n\nServices include comprehensive analysis, DDRiVE-M platform integration, and customized development planning.');
+                alert('Professional interpretation services are available.\n\nContact ASilva Innovations directly:\nEmail: info@asilvainnovations.com\nPhone: +639178555134\n\nServices include comprehensive analysis, DDRiVE-M platform integration, and customized development planning.');
             }
             
             function showDDRiVEInfo() {
-                alert('DDRiVE-M (Data-Driven Risk & Vulnerability Evaluation and Management) Intelligence Platform integration enables:\n\n- Real-time leadership risk exposure monitoring\n- Advanced analytics on decision patterns\n- Customizable risk frameworks per project context\n- Automated reporting for donor compliance\n\nContact Alvin Silva to discuss integration options for your organization.');
+                alert('DDRiVE-M (Data-Driven Risk & Vulnerability Evaluation and Management) Intelligence Platform integration enables:\n\n- Real-time leadership risk exposure monitoring\n- Advanced analytics on decision patterns\n- Customizable risk frameworks per project context\n- Automated reporting for donor compliance\n\nContact ASilva Innovations to discuss integration options for your organization.');
             }
             
             // Initialize progress display
