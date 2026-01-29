@@ -1,14 +1,37 @@
-User-agent: Googlebot
-Allow: /
+# ==========================================================
+# Real-Time Leadership Center - Robots.txt
+# Optimized for SEO and Security
+# ==========================================================
 
+# 1. High-Priority Search Crawlers
+User-agent: Googlebot
 User-agent: Bingbot
 Allow: /
+Allow: /assets/ # Ensure official branding/logos are indexed
+Disallow: /settings # Protect user profile privacy
+Disallow: /analytics # Protect private data dashboards
+Disallow: /goals # Protect private user objectives
 
+# 2. Social Media & Rich Snippet Crawlers
+# Allows Twitter and Facebook to generate previews for course sharing
 User-agent: Twitterbot
-Allow: /
-
 User-agent: facebookexternalhit
 Allow: /
+Allow: /assets/images/
 
+# 3. Global Rules
 User-agent: *
 Allow: /
+# Block paths associated with the new Auth and Profile systems
+Disallow: /login
+Disallow: /register
+Disallow: /password-recovery
+Disallow: /verify/* # Block indexing of individual certificates
+Disallow: /admin
+
+# 4. Technical Optimization
+# Helps crawlers find your content faster
+Sitemap: https://asilvainnovations.com/rtl/sitemap.xml
+
+# Host identification
+Host: asilvainnovations.com/rtl
