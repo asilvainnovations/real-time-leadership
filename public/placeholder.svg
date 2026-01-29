@@ -3,17 +3,21 @@
   width="200"
   height="200"
   viewBox="0 0 200 200"
+  version="1.1"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   preserveAspectRatio="xMidYMid meet"
+  style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;"
 >
+  <title>Real-Time Leadership Logo</title>
+  <desc>Official icon and logo for the Real-Time Leadership Course</desc>
+  
   <image
-    href="https://appimize.app/assets/apps/user_1097/images/eeab3b519f0e_622_1097.png"
+    xlink:href="https://appimize.app/assets/apps/user_1097/images/eeab3b519f0e_622_1097.png"
     x="0"
     y="0"
     width="200"
     height="200"
-    preserveAspectRatio="xMidYMid slice"
+    preserveAspectRatio="xMidYMid meet"
   />
-
-  </svg>
+</svg>
