@@ -72,5 +72,5 @@ export const realTimeLeadershipCourse = {
     preTest: 'Real-Time Leadership Baseline Assessment (Module 0)',
     postTest: 'Real-Time Leadership Growth Assessment (Module 8)',
     metrics: ['Master the Moment', 'Options Generation', 'Validate Choices', 'Execute & Evaluate']
-  }
+    ]
 };
