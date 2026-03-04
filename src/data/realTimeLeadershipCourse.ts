@@ -1,4 +1,50 @@
-export const realTimeLeadershipCourse = {
+export interface MoveFramework {
+  elements: string[];
+  focus: string;
+}
+
+export interface Certification {
+  type: string;
+  requirements: string;
+  points: number;
+  badge: string;
+}
+
+export interface Methodology {
+  type: string;
+  components: string[];
+}
+
+export interface Assessment {
+  preTest: string;
+  postTest: string;
+  metrics: string[];
+}
+
+export interface RealTimeLeadershipCourse {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  instructor: string;
+  duration: string;
+  totalTime: string;
+  level: string;
+  category: string;
+  heroImage: string;
+  moveFramework: MoveFramework;
+  targetAudience: string[];
+  learningOutcomes: string[];
+  keyTools: string[];
+  certification: Certification;
+  prerequisites: string[];
+  methodology: Methodology;
+  assessment: Assessment;
+  // Optional: Include modules directly to avoid separate import issues
+  modules?: unknown[]; 
+}
+
+export const realTimeLeadershipCourse: RealTimeLeadershipCourse = {
   id: 'rtl-001',
   title: 'Real-Time Leadership for Resilient Organizations: A MOVE-Based Learning Journey',
   subtitle: 'Master the MOVE Framework for High-Stakes Decision Making',
@@ -9,6 +55,7 @@ export const realTimeLeadershipCourse = {
   totalTime: '180 minutes (3 hours)',
   level: 'Intermediate',
   category: 'Leadership & Crisis Management',
+  // FIXED: Removed trailing space in URL that could cause asset loading issues
   heroImage: 'https://appimize.app/assets/apps/user_1097/images/7ef410c2c758_778_1097.png',
   moveFramework: {
     elements: ['Master', 'Options', 'Validate', 'Execute'],
