@@ -3,7 +3,7 @@ export const realTimeLeadershipCourse = {
   title: 'Real-Time Leadership for Resilient Organizations: A MOVE-Based Learning Journey',
   subtitle: 'Master the MOVE Framework for High-Stakes Decision Making',
   description:
-    "The MOVE Framework (Master the Moment, Options Generation, Validate Choices, Execute and Evaluate) transforms how leaders navigate uncertainty. This practical journey equips you with field-tested tools—from RACI matrices and pre-mortems to remote team charters and energy budgeting—to make confident, data-informed decisions under pressure. No theory, just actionable practices for SMEs, NGOs, and LGUs facing real-world complexity.",
+    "The MOVE Framework (Master, Options, Validate, Execute) transforms how leaders navigate uncertainty. This practical journey equips you with field-tested tools—from RACI matrices and pre-mortems to remote team charters and energy budgeting—to make confident, data-informed decisions under pressure. No theory, just actionable practices for SMEs, NGOs, and LGUs facing real-world complexity.",
   instructor: 'ASilva Innovations',
   duration: '9 modules',
   totalTime: '180 minutes (3 hours)',
@@ -11,7 +11,7 @@ export const realTimeLeadershipCourse = {
   category: 'Leadership & Crisis Management',
   heroImage: 'https://appimize.app/assets/apps/user_1097/images/7ef410c2c758_778_1097.png',
   moveFramework: {
-    elements: ['Master the Moment', 'Options Generation', 'Validate Choices', 'Execute & Evaluate'],
+    elements: ['Master', 'Options', 'Validate', 'Execute'],
     focus: 'Real-time decision making under uncertainty'
   },
   targetAudience: [
@@ -72,5 +72,5 @@ export const realTimeLeadershipCourse = {
     preTest: 'Real-Time Leadership Baseline Assessment (Module 0)',
     postTest: 'Real-Time Leadership Growth Assessment (Module 8)',
     metrics: ['Master the Moment', 'Options Generation', 'Validate Choices', 'Execute & Evaluate']
-    ]
+  }
 };
