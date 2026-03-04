@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Progress } from '@/components/ui/progress';
 import { Search, Filter, Clock, Users, Star, Play, TrendingUp, Shield, Brain, BarChart3, CheckCircle } from 'lucide-react';
 import { realTimeLeadershipCourse } from '@/data/realTimeLeadershipCourse';
-import { modules } from '@/data/realTimeLeadershipModules';
+import { realTimeLeadershipModules } from '@/data/realTimeLeadershipModules';
 import CoursePlayer from './CoursePlayer';
 
 const CoursesContent: React.FC = () => {
@@ -18,27 +18,27 @@ const CoursesContent: React.FC = () => {
   const courses = [
     {
       id: 1,
-      title: 'Systems Thinking in Local Government Finance',
-      description: 'Master holistic approaches to financial management, budgeting, and resource allocation in local government contexts.',
-      instructor: 'Dr. Sarah Johnson',
-      duration: '8 weeks',
+      title: 'Systems Thinking for Local Development',
+      description: 'A practical, action-oriented course that teaches local government leaders, development managers, and civic practitioners how to diagnose complex local problems, design coherent policies, and coordinate resources for sustained community outcomes using systems thinking.',
+      instructor: 'ASilva Innovations',
+      duration: '1 week',
       students: 847,
       rating: 4.9,
       level: 'Advanced',
-      category: 'Finance',
+      category: 'Leadership',
       image: 'bg-gradient-to-br from-emerald-500 to-teal-700',
       progress: 0,
       icon: TrendingUp
     },
     {
       id: 2,
-      title: realTimeLeadershipCourse.title,
-      description: realTimeLeadershipCourse.description,
-      instructor: realTimeLeadershipCourse.instructor,
-      duration: realTimeLeadershipCourse.totalTime,
+      title: 'Real-Time Leadership for Resilient Organizations: A MOVE-Based Learning Journey',
+      description: 'In fast-moving, uncertain environments—whether facing typhoons, supply chain shocks, or team burnout—leaders don’t need more theory. They need practical, real-time practices to stay calm, make data-informed decisions, and keep their people aligned and resilient.This course adapts the MOVE framework (Noble & Kauffman.',
+      instructor: 'ASilva Innovations',
+      duration: '1 Week',
       students: 1156,
-      rating: 4.8,
-      level: realTimeLeadershipCourse.level,
+      rating: '4.8',
+      level: 'Intermediate',
       category: realTimeLeadershipCourse.category,
       image: 'bg-gradient-to-br from-blue-500 to-indigo-700',
       heroImage: realTimeLeadershipCourse.heroImage,
@@ -50,7 +50,7 @@ const CoursesContent: React.FC = () => {
       id: 3,
       title: 'Integrated Risk and Resilience Management',
       description: 'Comprehensive framework for identifying, assessing, and managing risks while building organizational resilience.',
-      instructor: 'Dr. Lisa Rodriguez',
+      instructor: 'ASilva Innovations',
       duration: '10 weeks',
       students: 634,
       rating: 4.7,
@@ -64,7 +64,7 @@ const CoursesContent: React.FC = () => {
       id: 4,
       title: 'AI-Driven Performance Data Analytics',
       description: 'Leverage artificial intelligence and advanced analytics to drive performance insights and data-driven decision making.',
-      instructor: 'James Wilson',
+      instructor: 'ASIlva Innovations',
       duration: '7 weeks',
       students: 923,
       rating: 4.9,
@@ -76,7 +76,7 @@ const CoursesContent: React.FC = () => {
     }
   ];
 
-  const categories = ['All', 'Finance', 'Leadership', 'Risk Management', 'Analytics'];
+  const categories = ['All', 'Systems Thinking', 'Leadership', 'Risk Management', 'Innovation'];
 
   const openCourseDetail = (course: any) => {
     setSelectedCourse(course);
@@ -197,9 +197,9 @@ const CoursesContent: React.FC = () => {
                         ))}
                       </ul>
                     </div>
-                    <div><h3 className="font-semibold mb-4">Course Modules ({modules.length} modules)</h3>
+                    <div><h3 className="font-semibold mb-4">Course Modules ({realTimeLeadershipModules.length} modules)</h3>
                       <div className="space-y-3">
-                        {modules.map((module) => (
+                        {realTimeLeadershipModules.map((module) => (
                           <div key={module.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
                             <div className="flex items-center gap-3">
                               <div className="h-5 w-5 border-2 border-gray-300 rounded-full" />
